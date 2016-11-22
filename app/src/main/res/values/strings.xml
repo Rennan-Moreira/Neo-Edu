@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Neo Edu</string>
+    <string name="app_title">Cadastrar</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_tel">Telefone</string>
+    <string name="prompt_password">Senha</string>
+    <string name="prompt_name">"Nome"</string>
+    <string name="prompt_user">"Usuário"</string>
+    <string name="action_sign_in">Cadastrar</string>
+    <string name="action_sign_in_short">Logar</string>
+    <string name="error_invalid_email">Este email é inválido</string>
+    <string name="error_invalid_password">Esta senha é muito pequena</string>
+    <string name="error_invalid_nome">Este nome não pode conter espaços</string>
+    <string name="error_invalid_user">Este usuário não pode conter espaços</string>
+    <string name="error_incorrect_password">Esta senha está incorreta</string>
+    <string name="error_field_required">Este campo é obrigatório</string>
+    <string name="permission_rationale">"Essas informações são necessárias"</string>
+    <string name="estudante">Estudante</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_login">Entrar</string>
+
+    <string name="title_activity_entrar">EntrarActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+</resources>
