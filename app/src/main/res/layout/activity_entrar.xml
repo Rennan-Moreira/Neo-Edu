@@ -25,7 +25,7 @@
         android:layout_marginBottom="50dp" />
 
     <ScrollView
-        android:id="@+id/registrar_form"
+        android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/colorPrimary"
@@ -36,7 +36,7 @@
         android:paddingTop="10dp">
 
         <LinearLayout
-            android:id="@+id/user_login_form"
+            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_user"
-                    android:id="@+id/edtUsuario"
+                    android:id="@+id/email"
                     android:maxLines="1"
                     android:textColorHint="@android:color/background_light"
                     android:textColor="@android:color/white" />
@@ -69,7 +69,7 @@
                 android:layout_marginBottom="10dp">
 
                 <EditText
-                    android:id="@+id/edtPassword"
+                    android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -94,7 +94,7 @@
                 android:layout_marginTop="10dp">
 
                 <Button
-                    android:id="@+id/btnEntrar"
+                    android:id="@+id/email_sign_in_button"
                     style="?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_marginTop="20dp"
