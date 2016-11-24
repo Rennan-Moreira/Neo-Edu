@@ -184,7 +184,7 @@ public class CadastrarActivity extends AppCompatActivity implements LoaderCallba
 
         // Verifique se há uma senha válida, se o usuário digitar uma.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+            mPasswordView.setError(getString(R.string.error_invalid_text));
             focusView = mPasswordView;
             cancel = true;
         }
@@ -195,7 +195,7 @@ public class CadastrarActivity extends AppCompatActivity implements LoaderCallba
             focusView = mEmailView;
             cancel = true;
         } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+            mEmailView.setError(getString(R.string.error_invalid_text));
             focusView = mEmailView;
             cancel = true;
         }
