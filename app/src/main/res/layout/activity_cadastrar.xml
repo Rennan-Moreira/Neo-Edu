@@ -65,8 +65,7 @@
                     android:hint="@string/prompt_name"
                     android:id="@+id/edtNome"
                     android:maxLines="1"
-                    android:textColor="@android:color/white"
-                    android:text="Rennan Moreira Pinto" />
+                    android:textColor="@android:color/white" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -84,7 +83,7 @@
                     android:maxLines="1"
                     android:textColorHint="@android:color/background_light"
                     android:textColor="@android:color/white"
-                    android:text="RenMor96" />
+                    />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -103,28 +102,10 @@
                     android:maxLines="1"
                     android:textColorHint="@android:color/background_light"
                     android:textColor="@android:color/background_light"
-                    android:text="rennan@hotmail.com" />
+                     />
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textColorHint="@android:color/background_light">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/prompt_tel"
-                    android:id="@+id/edtTelefone"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:textColorHint="@android:color/background_light"
-                    android:textColor="@android:color/white"
-                    android:text="(13) 99555-9090" />
-
-            </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -137,7 +118,7 @@
 
                 <RadioButton
                     android:text="@string/estudante"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdbEstudante"
                     android:layout_weight="1"
@@ -150,7 +131,8 @@
 
                 <RadioButton
                     android:text="Professor"
-                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/rdbProfessor"
                     android:buttonTint="@android:color/background_light"
@@ -162,6 +144,22 @@
                     tools:ignore="HardcodedText" />
 
             </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:textColorHint="@android:color/background_light">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    android:hint="Data de nascimento"
+                    android:ems="10"
+                    android:id="@+id/editText2"
+                    android:layout_weight="1" />
+
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -184,7 +182,7 @@
                     android:textColor="@android:color/background_light"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
-                    android:text="123456" />
+                     />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -192,14 +190,14 @@
                 android:id="@+id/btnCadastrar"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="35dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:textColorLink="@android:color/background_light"
                 android:textColor="@color/colorBack"
-                android:layout_height="50dp"
-                android:onClick="startNextActivity (CadastrarActivity)" />
+                android:onClick="startNextActivity (CadastrarActivity)"
+                android:layout_height="50dp" />
 
         </LinearLayout>
     </ScrollView>
