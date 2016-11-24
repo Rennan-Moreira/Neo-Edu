@@ -67,10 +67,9 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrar);
         // Set up the login form.
-        mEmailView = (EditText) findViewById(R.id.email);
-        populateAutoComplete();
+        mEmailView = (EditText) findViewById(R.id.edtUser);
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = (EditText) findViewById(R.id.edtPass);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -82,7 +81,7 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = (Button) findViewById(R.id.btnEntrar);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,50 +92,6 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
     }
-
-    private void populateAutoComplete() {
-        if (!mayRequestContacts()) {
-            return;
-        }
-
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-    private boolean mayRequestContacts() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(mEmailView, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        @TargetApi(Build.VERSION_CODES.M)
-                        public void onClick(View v) {
-                            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-                        }
-                    });
-        } else {
-            requestPermissions(new String[]{READ_CONTACTS}, REQUEST_READ_CONTACTS);
-        }
-        return false;
-    }
-
-    /**
-     * Callback received when a permissions request has been completed.
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_READ_CONTACTS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
-            }
-        }
-    }
-
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -159,12 +114,17 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) ){
+            mPasswordView.setError(getString(R.string.error_field_required));
+            focusView = mPasswordView;
+            cancel = true;
+
+        } else if( isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
+
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
@@ -175,7 +135,14 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
+        } else if (isEmailSmall(email)) {
+            mEmailView.setError(getString(R.string.error_small_email));
+            focusView = mEmailView;
+            cancel = true;
         }
+        // Check for a valid password, if the user entered one.
+
+
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -192,12 +159,37 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+        String caractere= "qwertyuiopasdfghjklçzxcvbnméáóíã"+
+                "QWERTYUIOPASDFGHJKLÇZXCVBNMÁÓÍÉÃ-_0123456789";
+        boolean existe;
+        for(int i=0; i<email.length();i++){
+            existe = false;
+            for(int j=0; j<caractere.length();j++){
+                if (email.charAt(i)==caractere.charAt(j)){ existe=true; }
+            }
+            if(!existe){return false;}
+        }
+        return true;
+    }
+
+    private boolean isEmailSmall(String email) {
+        //TODO: Replace this with your own logic
+
+        return email.length() < 8;
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        String caractere= "qwertyuiopasdfghjklçzxcvbnméáóíã"+
+                "QWERTYUIOPASDFGHJKLÇZXCVBNMÁÓÍÉÃ-_.@#$&!*()[]{}+0123456789";
+        boolean existe;
+        for(int i=0; i<password.length();i++){
+            existe = false;
+            for(int j=0; j<caractere.length();j++){
+                if (password.charAt(i)==caractere.charAt(j)){ existe=true; }
+            }
+            if(!existe){return false;}
+        }
+        return true;
     }
 
     /**

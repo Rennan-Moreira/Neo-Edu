@@ -10,13 +10,14 @@
     <string name="prompt_user">"Usuário"</string>
     <string name="action_sign_in">Cadastrar</string>
     <string name="action_sign_in_short">Logar</string>
-    <string name="error_invalid_email">Este email é inválido</string>
-    <string name="error_invalid_password">Esta senha é muito pequena</string>
-    <string name="error_invalid_nome">Este nome não pode conter espaços</string>
-    <string name="error_invalid_user">Este usuário não pode conter espaços</string>
-    <string name="error_incorrect_password">Esta senha está incorreta</string>
-    <string name="error_field_required">Este campo é obrigatório</string>
-    <string name="permission_rationale">"Essas informações são necessárias"</string>
+    <string name="error_invalid_email">Só é permitido letras, números e caractéres especiais!</string>
+    <string name="error_small_email">Este campo precisa ter 8 ou mais caracteres!</string>
+    <string name="error_invalid_password">Esta senha é muito pequena!</string>
+    <string name="error_invalid_nome">Este nome não pode conter espaços!</string>
+    <string name="error_invalid_user">Este usuário não pode conter espaços!</string>
+    <string name="error_incorrect_password">Esta senha está incorreta!</string>
+    <string name="error_field_required">Este campo é obrigatório!</string>
+    <string name="permission_rationale">"Essas informações são necessárias!"</string>
     <string name="estudante">Estudante</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
