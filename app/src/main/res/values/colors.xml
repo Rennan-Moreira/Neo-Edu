@@ -6,6 +6,7 @@
     <color name="colorBack">#e7e7e7</color>
     <color name="colorString">#f9e200</color>
     <color name="VerdeEdu">#11a18c</color>
+    <color name="Erro">#a5021b</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

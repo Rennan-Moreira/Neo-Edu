@@ -1,5 +1,7 @@
 package com.example.rennan.neoedu;
 
+import android.media.Image;
+
 import java.util.Date;
 
 /**
@@ -8,14 +10,21 @@ import java.util.Date;
 
 public abstract class Pessoas {
 
+    private String usuario;
+    private String senha;
     private String nome;
-    private String sobrenome;
-    private Date dtNasc;        //public Date(int year, int month, int date)
+    private Date   nasc;        //public Date(int year, int month, int date)
     private String email;
 
     public Pessoas(){}
 
-    public Pessoas(String nome, String sobrenome, Date dtNasc, String email){}
+    public Pessoas(String usuario, String senha, String nome, Date nasc, String email){
+        this.nome = nome;
+        this.nasc = nasc;
+        this.email = email;
+        this.usuario = usuario;
+        this.senha = senha;
+    }
 
     public String getNome() {
         return nome;
@@ -25,28 +34,36 @@ public abstract class Pessoas {
         this.nome = nome;
     }
 
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public Date getDtNasc() {
-        return dtNasc;
-    }
-
-    public void setDtNasc(Date dtNasc) {
-        this.dtNasc = this.dtNasc;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getNasc() {
+        return nasc;
+    }
+
+    public void setNasc(Date nasc) {
+        this.nasc = nasc;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
 

@@ -14,8 +14,8 @@ public class Aluno extends Pessoas {
 
     }
 
-    public Aluno(String nome, String sobrenome, Date dtNasc, String email, int codAluno){
-        super(nome, sobrenome, dtNasc, email);
+    public Aluno(String usuario, String senha, String nome, Date dtNasc, String email, int codAluno){
+        super(usuario, senha, nome, dtNasc, email);
         this.codAluno = codAluno;
     }
 
