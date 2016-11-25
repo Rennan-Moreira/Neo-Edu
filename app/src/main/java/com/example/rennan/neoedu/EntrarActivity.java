@@ -118,25 +118,27 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;
-
-        } else if( isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
+        } else if(!isTextValid(password)){
+            mPasswordView.setError(getString(R.string.error_invalid_text));
+            focusView = mPasswordView;
+            cancel = true;
+        } else if(isTextSmall(password)){
+            mPasswordView.setError(getString(R.string.error_small_text));
             focusView = mPasswordView;
             cancel = true;
         }
-
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+        } else if (!isTextValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_text));
             focusView = mEmailView;
             cancel = true;
-        } else if (isEmailSmall(email)) {
-            mEmailView.setError(getString(R.string.error_small_email));
+        } else if (isTextSmall(email)) {
+            mEmailView.setError(getString(R.string.error_small_text));
             focusView = mEmailView;
             cancel = true;
         }
@@ -157,40 +159,27 @@ public class EntrarActivity extends AppCompatActivity implements LoaderCallbacks
         }
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean isTextValid(String text) {
         //TODO: Replace this with your own logic
         String caractere= "qwertyuiopasdfghjklçzxcvbnméáóíã"+
                 "QWERTYUIOPASDFGHJKLÇZXCVBNMÁÓÍÉÃ-_0123456789";
         boolean existe;
-        for(int i=0; i<email.length();i++){
+        for(int i=0; i<text.length();i++){
             existe = false;
             for(int j=0; j<caractere.length();j++){
-                if (email.charAt(i)==caractere.charAt(j)){ existe=true; }
+                if (text.charAt(i)==caractere.charAt(j)){ existe=true; }
             }
             if(!existe){return false;}
         }
         return true;
     }
 
-    private boolean isEmailSmall(String email) {
+    private boolean isTextSmall(String text) {
         //TODO: Replace this with your own logic
 
-        return email.length() < 8;
+        return text.length() < 8;
     }
 
-    private boolean isPasswordValid(String password) {
-        String caractere= "qwertyuiopasdfghjklçzxcvbnméáóíã"+
-                "QWERTYUIOPASDFGHJKLÇZXCVBNMÁÓÍÉÃ-_.@#$&!*()[]{}+0123456789";
-        boolean existe;
-        for(int i=0; i<password.length();i++){
-            existe = false;
-            for(int j=0; j<caractere.length();j++){
-                if (password.charAt(i)==caractere.charAt(j)){ existe=true; }
-            }
-            if(!existe){return false;}
-        }
-        return true;
-    }
 
     /**
      * Shows the progress UI and hides the login form.
