@@ -52,20 +52,28 @@ public class Controle {
         pesquisarAluno(codAluno).setNome(novoNome);
     }
 
-    public void setSobrenomeProfessor(int codProfessor, String novoSobrenome){
-        pesquisarProfessor(codProfessor).setSobrenome(novoSobrenome);
+    public void setUsuarioProfessor(int codProfessor, String novoUsuario){
+        pesquisarProfessor(codProfessor).setUsuario(novoUsuario);
     }
 
-    public void setSobrenomeAluno(int codAluno, String novoSobrenome){
-        pesquisarAluno(codAluno).setSobrenome(novoSobrenome);
+    public void setUsuarioAluno(int codAluno, String novoUsuario) {
+        pesquisarAluno(codAluno).setUsuario(novoUsuario);
+    }
+
+    public void setSenhaoProfessor(int codProfessor, String novoSenha){
+        pesquisarProfessor(codProfessor).setUsuario(novoSenha);
+    }
+
+    public void setSenhaAluno(int codAluno, String novoSenha){
+        pesquisarAluno(codAluno).setUsuario(novoSenha);
     }
 
     public void setdtNascAluno(int codAluno, Date dtNasc){
-        pesquisarAluno(codAluno).setDtNasc(dtNasc);
+        pesquisarAluno(codAluno).setNasc(dtNasc);
     }
 
     public void setdtNascProfessor(int codProfessor, Date dtNasc){
-        pesquisarProfessor(codProfessor).setDtNasc(dtNasc);
+        pesquisarProfessor(codProfessor).setNasc(dtNasc);
     }
 
     public void setEmailAluno(int codAluno, String novoEmail){
@@ -82,22 +90,15 @@ public class Controle {
 
     public String getNomeProfessor(int codProfessor){
         return pesquisarProfessor(codProfessor).getNome();
-    }
 
-    public String getSobrenomeAluno(int codAluno){
-        return pesquisarAluno(codAluno).getSobrenome();
-    }
-
-    public String getSobrenomeProfessor(int codProfessor){
-        return pesquisarAluno(codProfessor).getSobrenome();
     }
 
     public Date getdtNascAluno(int codAluno){
-        return pesquisarAluno(codAluno).getDtNasc();
+        return pesquisarAluno(codAluno).getNasc();
     }
 
     public Date getdtNascProfessor(int codProfessor){
-        return pesquisarProfessor(codProfessor).getDtNasc();
+        return pesquisarProfessor(codProfessor).getNasc();
     }
 
     public String getEmailAluno(int codAluno){
@@ -106,5 +107,21 @@ public class Controle {
 
     public String getEmailProfessor(int codProfessor){
         return pesquisarProfessor(codProfessor).getEmail();
+    }
+
+    public String getUsuarioProfessor(int codProfessor){
+        return pesquisarProfessor(codProfessor).getUsuario();
+    }
+
+    public String getUsuarioAluno(int codAluno) {
+        return pesquisarAluno(codAluno).getUsuario();
+    }
+
+    public String getSenhaoProfessor(int codProfessor){
+        return pesquisarProfessor(codProfessor).getUsuario();
+    }
+
+    public String getSenhaAluno(int codAluno){
+        return pesquisarAluno(codAluno).getUsuario();
     }
 }

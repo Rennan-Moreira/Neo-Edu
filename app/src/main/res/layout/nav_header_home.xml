@@ -22,7 +22,7 @@
             android:id="@+id/circle_crop"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/user" />
+            android:src="@mipmap/u1" />
 
         <ImageView
             android:id="@+id/pic"

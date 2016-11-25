@@ -12,8 +12,8 @@ public class Professor extends Pessoas {
 
     public Professor(){}
 
-    public Professor(String nome, String sobrenome, Date dtNasc, String email, int codProfessor) {
-        super(nome, sobrenome, dtNasc, email);
+    public Professor(String usuario, String senha, String nome, Date dtNasc, String email, int codProfessor) {
+        super(usuario, senha, nome, dtNasc, email);
         this.codProfessor = codProfessor;
     }
 
