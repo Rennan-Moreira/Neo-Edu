@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Aluno extends Pessoas {
 
-    public int codAluno;
+    private int codAluno;
 
     public Aluno(){
 
@@ -19,8 +19,11 @@ public class Aluno extends Pessoas {
         this.codAluno = codAluno;
     }
 
-    public int getcodAluno() {
+    public int getCodAluno() {
         return codAluno;
     }
 
+    public void setCodAluno(int codAluno) {
+        this.codAluno = codAluno;
+    }
 }

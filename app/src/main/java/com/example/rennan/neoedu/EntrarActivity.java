@@ -31,6 +31,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
@@ -62,6 +63,7 @@ public class EntrarActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private TextView erro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,13 +94,7 @@ public class EntrarActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-        Controle c = new Controle();
-
-        c.addAluno(new Aluno());
-        c.setUsuarioAluno(0,"RennanMP96");
-        c.setSenhaAluno(0,"Minhasenha#");
-
+        erro = (TextView) findViewById(R.id.txtErro);
     }
 
     /**
@@ -163,6 +159,8 @@ public class EntrarActivity extends AppCompatActivity {
             // perform the user login attempt.
 
 
+            email = mEmailView.getText().toString();
+            password = mPasswordView.getText().toString();
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
 
@@ -254,16 +252,25 @@ public class EntrarActivity extends AppCompatActivity {
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+            Controle c = new Controle();
+            c.addAluno(new Aluno("11111111","11111111","Rennan",new Date(),"Email",0));
+
+            for(int i=0;i<c.getLengthAlunos();i++){
+                if(c.getUsuarioAluno(i)==mEmail && c.getSenhaAluno(i)==mPassword){
+                    return true;
                 }
             }
 
+            for(int i=0;i<c.getLengthProfessores();i++){
+                if(c.getUsuarioProfessor(i)==mEmail && c.getSenhaProfessor(i)==mPassword){
+                    return true;
+                }
+            }
+
+
+
             // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
@@ -272,10 +279,12 @@ public class EntrarActivity extends AppCompatActivity {
             showProgress(false);
 
             if (success) {
-                finish();
+
+
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                erro.setVisibility(View.VISIBLE);
+                erro.setText("Usuario e/ou senha incorretos");
+                mEmailView.requestFocus();
             }
         }
 
@@ -285,5 +294,6 @@ public class EntrarActivity extends AppCompatActivity {
             showProgress(false);
         }
     }
+
 }
 
