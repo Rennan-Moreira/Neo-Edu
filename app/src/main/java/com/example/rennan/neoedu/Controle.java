@@ -18,6 +18,7 @@ public class Controle {
 
     public void addAluno(Aluno temp){
         alunos.add(temp);
+        //alunos.get(alunos.size()-1).setCodAluno(alunos.size()-1);
     }
 
     public void addProfessor(Professor temp){
@@ -27,7 +28,7 @@ public class Controle {
     public Aluno pesquisarAluno(int codAluno){
         Aluno temp = new Aluno();
         for (Aluno a : alunos) {
-            if(codAluno == a.codAluno){
+            if(codAluno == a.getCodAluno()){
                 temp = a;
             }
         }
@@ -43,6 +44,15 @@ public class Controle {
         }
         return temp;
     }
+
+    public int getLengthAlunos(){
+        return alunos.size();
+    }
+
+    public int getLengthProfessores(){
+        return professores.size();
+    }
+
 
     public void setnomeProfessor(int codProfessor, String novoNome){
         pesquisarProfessor(codProfessor).setNome(novoNome);
@@ -117,11 +127,13 @@ public class Controle {
         return pesquisarAluno(codAluno).getUsuario();
     }
 
-    public String getSenhaoProfessor(int codProfessor){
+    public String getSenhaProfessor(int codProfessor){
         return pesquisarProfessor(codProfessor).getUsuario();
     }
 
     public String getSenhaAluno(int codAluno){
         return pesquisarAluno(codAluno).getUsuario();
     }
+
+
 }
