@@ -237,11 +237,11 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
-        private final String mPassword;
+        private final String mUser;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
-            mPassword = password;
+            mUser = password;
         }
 
         @Override
@@ -258,13 +258,13 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
             Controle c = new Controle();
 
             for(int i=0;i<c.getLengthAlunos();i++){
-                if(c.getEmailAluno(i).equals(mEmail) && c.getUsuarioAluno(i).equals(mUserView)){
+                if(c.getEmailAluno(i).equals(mEmail) && c.getUsuarioAluno(i).equals(mUser)){
                     return true;
                 }
             }
 
             for(int i=0;i<c.getLengthProfessores();i++){
-                if(c.getEmailProfessor(i).equals(mEmail) && c.getUsuarioProfessor(i).equals(mUserView)){
+                if(c.getEmailProfessor(i).equals(mEmail) && c.getUsuarioProfessor(i).equals(mUser)){
                     return true;
                 }
             }
