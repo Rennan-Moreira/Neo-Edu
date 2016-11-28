@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#11a18c"
-    tools:context="com.example.rennan.neoedu.EntrarActivity"
-    android:paddingTop="40dp">
+    tools:context="com.example.rennan.neoedu.EntrarActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -16,19 +15,22 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="127dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
         app:srcCompat="@mipmap/flat"
         android:id="@+id/imgFlat"
         android:contentDescription=""
         tools:ignore="ContentDescription"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="30dp" />
 
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/colorPrimary"
-        android:layout_weight="1"
+        android:layout_weight="0.55"
         android:paddingBottom="5dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
@@ -72,7 +74,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:maxLines="1"
                     android:textColorLink="@android:color/background_light"
@@ -128,10 +129,11 @@
 
     <ProgressBar
         android:id="@+id/login_progress"
+        android:layout_weight="2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:visibility="gone"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large" />
+        android:layout_height="match_parent"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:paddingBottom="100dp" />
 
 </LinearLayout>

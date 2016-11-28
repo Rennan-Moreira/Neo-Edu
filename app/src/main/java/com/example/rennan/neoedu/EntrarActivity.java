@@ -40,6 +40,7 @@ import java.util.List;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
+ * Created by Rennan on 21/11/2016.
  * A login screen that offers login via email/password.
  */
 public class EntrarActivity extends AppCompatActivity implements OnClickListener {
