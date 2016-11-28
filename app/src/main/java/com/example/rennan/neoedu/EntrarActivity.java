@@ -3,6 +3,7 @@ package com.example.rennan.neoedu;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +31,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,20 +42,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 /**
  * A login screen that offers login via email/password.
  */
-public class EntrarActivity extends AppCompatActivity {
+public class EntrarActivity extends AppCompatActivity implements OnClickListener {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -63,7 +54,6 @@ public class EntrarActivity extends AppCompatActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private TextView erro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +84,6 @@ public class EntrarActivity extends AppCompatActivity {
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-        erro = (TextView) findViewById(R.id.txtErro);
     }
 
     /**
@@ -164,7 +153,7 @@ public class EntrarActivity extends AppCompatActivity {
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
 
-                showProgress(true);
+            showProgress(true);
 
         }
     }
@@ -227,6 +216,13 @@ public class EntrarActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onClick(View view) {
+        if(view.getId()==R.id.txtCadastrar){
+            startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
+        }
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
@@ -253,16 +249,16 @@ public class EntrarActivity extends AppCompatActivity {
             }
 
             Controle c = new Controle();
-            c.addAluno(new Aluno("11111111","11111111","Rennan",new Date(),"Email",0));
+            c.addAluno(new Aluno("RennanMP96","minhasenha","Rennan",new Date(),"Email",0));
 
             for(int i=0;i<c.getLengthAlunos();i++){
-                if(c.getUsuarioAluno(i)==mEmail && c.getSenhaAluno(i)==mPassword){
+                if(c.getUsuarioAluno(i).equals(mEmail) && c.getSenhaAluno(i).equals(mPassword)){
                     return true;
                 }
             }
 
             for(int i=0;i<c.getLengthProfessores();i++){
-                if(c.getUsuarioProfessor(i)==mEmail && c.getSenhaProfessor(i)==mPassword){
+                if(c.getUsuarioProfessor(i).equals(mEmail) && c.getSenhaProfessor(i).equals(mPassword)){
                     return true;
                 }
             }
@@ -282,8 +278,10 @@ public class EntrarActivity extends AppCompatActivity {
 
 
             } else {
-                erro.setVisibility(View.VISIBLE);
-                erro.setText("Usuario e/ou senha incorretos");
+                Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
+                        Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                toast.show();
                 mEmailView.requestFocus();
             }
         }

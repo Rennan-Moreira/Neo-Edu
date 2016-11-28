@@ -128,11 +128,12 @@ public class Controle {
     }
 
     public String getSenhaProfessor(int codProfessor){
-        return pesquisarProfessor(codProfessor).getUsuario();
+        return pesquisarProfessor(codProfessor).getSenha();
+
     }
 
     public String getSenhaAluno(int codAluno){
-        return pesquisarAluno(codAluno).getUsuario();
+        return pesquisarAluno(codAluno).getSenha();
     }
 
 
