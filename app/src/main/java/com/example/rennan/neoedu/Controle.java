@@ -129,6 +129,7 @@ public class Controle {
 
     public String getSenhaProfessor(int codProfessor){
         return pesquisarProfessor(codProfessor).getSenha();
+
     }
 
     public String getSenhaAluno(int codAluno){
