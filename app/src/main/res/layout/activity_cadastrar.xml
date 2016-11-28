@@ -42,8 +42,7 @@
         android:layout_weight="1"
         android:paddingBottom="5dp"
         android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="20dp">
+        android:paddingRight="50dp">
 
         <LinearLayout
             android:id="@+id/user_login_form"
