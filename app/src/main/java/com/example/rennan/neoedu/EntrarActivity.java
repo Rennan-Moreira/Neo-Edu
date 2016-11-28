@@ -275,8 +275,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             showProgress(false);
 
             if (success) {
-
-
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
