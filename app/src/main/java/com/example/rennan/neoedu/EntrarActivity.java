@@ -222,8 +222,8 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
         }else if(view.getId()==R.id.txtEsqueci){
             Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
-                    Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1250);
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1270);
             toast.show();
         }
     }
@@ -286,7 +286,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1250);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1260);
                 toast.show();
                 mEmailView.requestFocus();
             }
