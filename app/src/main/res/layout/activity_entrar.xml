@@ -33,7 +33,7 @@
         android:paddingBottom="5dp"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:paddingTop="15dp">
+        android:paddingTop="20dp">
 
         <LinearLayout
             android:id="@+id/user_login_form"
@@ -86,22 +86,9 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:text="Usuário e senha incorretos!"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/txtErro"
-                android:layout_weight="0.5"
-                android:textSize="18sp"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:visibility="invisible"
-                android:textColor="@color/Erro"
-                android:textStyle="normal|italic" />
-
             <Button
                 android:id="@+id/btnEntrar"
-                style="?android:textAppearanceSmall"
+                style="@android:style/TextAppearance.Material.Small"
                 android:layout_width="match_parent"
                 android:text="Entrar"
                 android:textStyle="bold"
@@ -121,7 +108,7 @@
                 android:textSize="18sp"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="65dp" />
 
             <TextView
                 android:text="Você é novo? Cadastre-se"
@@ -134,7 +121,7 @@
                 android:textAllCaps="false"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
-                android:onClick=""/>
+                android:onClick="onClick"/>
 
         </LinearLayout>
     </ScrollView>
