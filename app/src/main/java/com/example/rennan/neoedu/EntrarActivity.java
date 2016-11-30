@@ -85,6 +85,19 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+
+        ArrayList<String> itens = null;
+        DBManager dbManager = new DBManager(this);
+
+        for(int i=0; i<10;i++){
+            dbManager.addItem("Item nº"+1);
+        }
+
+        itens = dbManager.getAllItens();
+        ArrayList<String> adapter =
+                new ArrayList<String>(this, R.layout.support_simple_spinner_dropdown_item, itens);
+
     }
 
     /**
