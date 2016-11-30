@@ -40,6 +40,7 @@ import java.util.List;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
+ * Created by Rennan on 21/11/2016.
  * A login screen that offers login via email/password.
  */
 public class EntrarActivity extends AppCompatActivity implements OnClickListener {
@@ -220,6 +221,11 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     public void onClick(View view) {
         if(view.getId()==R.id.txtCadastrar){
             startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
+        }else if(view.getId()==R.id.txtEsqueci){
+            Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
+                    Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1270);
+            toast.show();
         }
     }
 
@@ -243,7 +249,9 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
             try {
                 // Simulate network access.
-                Thread.sleep(1000);
+
+                Thread.sleep(800);
+
             } catch (InterruptedException e) {
                 return false;
             }
@@ -275,12 +283,11 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             showProgress(false);
 
             if (success) {
-
-
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1260);
                 toast.show();
                 mEmailView.requestFocus();
             }

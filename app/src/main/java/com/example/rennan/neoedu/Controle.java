@@ -7,9 +7,9 @@ import java.util.Date;
  * Created by André on 24/11/2016.
  */
 
-public class Controle {
-    private ArrayList<Aluno> alunos;
-    private ArrayList<Professor> professores;
+public  class Controle {
+    private static ArrayList<Aluno> alunos;
+    private static ArrayList<Professor> professores;
 
     public Controle(){
         alunos = new ArrayList<Aluno>();

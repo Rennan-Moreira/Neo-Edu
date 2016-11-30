@@ -16,6 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+/**
+ * Created by Rennan on 22/11/2016.
+ */
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
