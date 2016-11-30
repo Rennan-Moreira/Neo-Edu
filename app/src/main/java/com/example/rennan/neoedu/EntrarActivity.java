@@ -95,8 +95,8 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         }
 
         itens = dbManager.getAllItens();
-        ArrayList<String> adapter =
-                new ArrayList<String>(this, R.layout.support_simple_spinner_dropdown_item, itens);
+       // ArrayList<String> adapter =
+       //         new ArrayList<String>(this, R.layout.support_simple_spinner_dropdown_item, itens);
 
     }
 
