@@ -14,6 +14,7 @@ public  class Controle {
     public Controle(){
         alunos = new ArrayList<Aluno>();
         professores = new ArrayList<Professor>();
+
     }
 
     public void addAluno(Aluno temp){
