@@ -56,6 +56,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     private View mProgressView;
     private View mLoginFormView;
     private Button mEmailSignInButton;
+    private int p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,9 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
+        View v1=findViewById(R.id.login_form);
+        View v2=findViewById(R.id.txtEsqueci);
+        p= (mEmailSignInButton.getBottom()+v2.getTop())/2+v1.getTop()-mEmailSignInButton.getHeight()/2+30;
     }
 
     /**
@@ -233,10 +237,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             case R.id.txtEsqueci:
                 Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
                     Toast.LENGTH_SHORT);
-                int p;
-                View v1=findViewById(R.id.login_form);
-                View v2=findViewById(R.id.txtEsqueci);
-                p= (mEmailSignInButton.getBottom()+v2.getTop())/2+v1.getTop()-mEmailSignInButton.getHeight()/2;
+
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
                 toast.show();
                 break;
@@ -302,8 +303,6 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
-                int p;
-                p= mEmailSignInButton.getBottom();
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
                 toast.show();
                 mEmailView.requestFocus();
