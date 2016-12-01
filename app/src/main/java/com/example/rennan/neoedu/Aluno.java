@@ -23,6 +23,7 @@ public class Aluno extends Pessoas {
         return codAluno;
     }
 
+
     public void setCodAluno(int codAluno) {
         this.codAluno = codAluno;
     }
