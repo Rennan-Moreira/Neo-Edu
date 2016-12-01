@@ -4,13 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by Rennan on 28/11/2016.
- */
+
 
 public class CriaBanco extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "cadastro.db";
+    private static final int VERSAO_DB = 1;
     private static final String TAB_ALUNO ="aluno";
     private static final String TAB_PROFESSOR = "professor";
     private static final String NOME_ALUNO = "nomeAluno";
@@ -24,8 +23,8 @@ public class CriaBanco extends SQLiteOpenHelper {
     private static final String EMAIL_ALUNO = "emailAluno";
     private static final String EMAIL_PROFESSOR ="emailProfessor";
 
-    public CriaBanco(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public CriaBanco(Context context) {
+        super(context, NOME_BANCO, null, VERSAO_DB);
     }
 
     @Override
