@@ -49,7 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:textColorHint="@android:color/background_light"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:id="@+id/txtUser">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -58,7 +59,8 @@
                     android:id="@+id/edtUser"
                     android:maxLines="1"
                     android:textColorHint="@android:color/background_light"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:onClick="onClick" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -67,7 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:textColorHint="@android:color/background_light"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:id="@+id/txtPass">
 
                 <EditText
                     android:id="@+id/edtPass"
@@ -82,7 +85,8 @@
                     android:textCursorDrawable="@android:color/background_light"
                     android:textColor="@android:color/background_light"
                     android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:onClick="onClick" />
 
             </android.support.design.widget.TextInputLayout>
 

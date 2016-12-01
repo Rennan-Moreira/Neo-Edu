@@ -55,13 +55,18 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button mEmailSignInButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrar);
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.edtUser);
+        View focusView = mEmailView;
+       // focusView.clearFocus();
 
         mPasswordView = (EditText) findViewById(R.id.edtPass);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -75,7 +80,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.btnEntrar);
+        mEmailSignInButton = (Button) findViewById(R.id.btnEntrar);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,18 +90,6 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-
-        ArrayList<String> itens = null;
-        DBManager dbManager = new DBManager(this);
-
-        for(int i=0; i<10;i++){
-            dbManager.addItem("Item nº"+1);
-        }
-
-        itens = dbManager.getAllItens();
-       // ArrayList<String> adapter =
-       //         new ArrayList<String>(this, R.layout.support_simple_spinner_dropdown_item, itens);
 
     }
 
@@ -232,13 +225,22 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.txtCadastrar){
-            startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
-        }else if(view.getId()==R.id.txtEsqueci){
-            Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
+
+        switch (view.getId()){
+            case R.id.txtCadastrar:
+                startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
+                break;
+            case R.id.txtEsqueci:
+                Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
                     Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1270);
-            toast.show();
+                int p;
+                View v1=findViewById(R.id.login_form);
+                View v2=findViewById(R.id.txtEsqueci);
+                p= (mEmailSignInButton.getBottom()+v2.getTop())/2+v1.getTop()-mEmailSignInButton.getHeight()/2;
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
+                toast.show();
+                break;
+
         }
     }
 
@@ -300,7 +302,9 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1260);
+                int p;
+                p= mEmailSignInButton.getBottom();
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
                 toast.show();
                 mEmailView.requestFocus();
             }
