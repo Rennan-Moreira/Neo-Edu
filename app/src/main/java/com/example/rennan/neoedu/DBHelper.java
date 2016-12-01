@@ -8,7 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Rennan on 28/11/2016.
  */
 
-public class CriaBanco extends SQLiteOpenHelper {
+public class DBHelper extends SQLiteOpenHelper {
+
+    private static String DB_NAME = "teste";
+    private static int DV_VERSION = 1;
+
+    private static String TABLE_ITENS = "CREATE TABLE itens("+
+            "id INTEGER PRIMARY KEY AUTOINCREMENT,"+
+            "nome TEXT"+
+            ");";
 
     private static final String NOME_BANCO = "cadastro.db";
     private static final String TAB_ALUNO ="aluno";
@@ -24,17 +32,17 @@ public class CriaBanco extends SQLiteOpenHelper {
     private static final String EMAIL_ALUNO = "emailAluno";
     private static final String EMAIL_PROFESSOR ="emailProfessor";
 
-    public CriaBanco(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public DBHelper(Context context) {
+        super(context, DB_NAME, null, DV_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(TABLE_ITENS);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int vA, int vN) {
 
     }
 }
