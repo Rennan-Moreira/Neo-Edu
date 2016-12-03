@@ -47,7 +47,7 @@ public class Pergunta {
         return LE;
     }
 
-    public boolean isCerto(int cd) {
-        return certo==cd;
+    public int getCerto() {
+        return certo;
     }
 }

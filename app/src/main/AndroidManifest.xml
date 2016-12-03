@@ -14,12 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CadastrarActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
-        </activity>
-        <activity
             android:name=".EntrarActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
@@ -34,7 +28,16 @@
         <activity
             android:name=".HomeActivity"
             android:label="Bem-Vindo ao Neo Edu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Questionario"
+            android:label="@string/title_quest"/>
+        <activity
+            android:name=".CadastrarActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>

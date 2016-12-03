@@ -1,10 +1,13 @@
 package com.example.rennan.neoedu;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.ActionMenuView;
+import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 /**
  * Created by Rennan on 22/11/2016.
@@ -75,7 +79,9 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.nav_banco) {
+
+            startActivity(new Intent(getApplicationContext(), Questionario.class));
             return true;
         }
 
@@ -88,20 +94,39 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_DisCom) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_ModCom) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_MedAce) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_algo){
+
+            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Algoritmo"));
+
+        } else if (id == R.id.nav_banco){
+
+            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Banco de Dados"));
+
+        } else if (id == R.id.nav_prog){
+
+            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Programação"));
+
+        } else if (id == R.id.nav_rede){
+
+            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Redes"));
+
+        } else if (id == R.id.nav_apli) {
+
+        } else if (id == R.id.nav_usua) {
 
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

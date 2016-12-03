@@ -92,9 +92,9 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        View v1=findViewById(R.id.login_form);
-        View v2=findViewById(R.id.txtEsqueci);
-        p= (mEmailSignInButton.getBottom()+v2.getTop())/2+v1.getTop()-mEmailSignInButton.getHeight()/2+30;
+        mEmailView.setText("RennanMP96");
+        mPasswordView.setText("minhasenha");
+
     }
 
     /**
@@ -235,9 +235,10 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
                 startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
                 break;
             case R.id.txtEsqueci:
+
+                p= findViewById(R.id.imgFlat).getBottom()+55+(findViewById(R.id.chbLembrar).getBottom()+findViewById(R.id.txtEsqueci).getBottom())/2;
                 Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
                     Toast.LENGTH_SHORT);
-
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
                 toast.show();
                 break;
@@ -275,6 +276,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             Controle c = new Controle();
             c.addAluno(new Aluno("RennanMP96","minhasenha","Rennan",new Date(),"Email",0));
 
+
             for(int i=0;i<c.getLengthAlunos();i++){
                 if(c.getUsuarioAluno(i).equals(mEmail) && c.getSenhaAluno(i).equals(mPassword)){
                     return true;
@@ -301,8 +303,10 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             if (success) {
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             } else {
+                p= findViewById(R.id.imgFlat).getBottom()+55+(findViewById(R.id.chbLembrar).getBottom()+findViewById(R.id.txtEsqueci).getBottom())/2;
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
+
                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
                 toast.show();
                 mEmailView.requestFocus();
