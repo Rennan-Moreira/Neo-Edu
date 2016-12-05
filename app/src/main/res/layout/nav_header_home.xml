@@ -22,7 +22,7 @@
             android:id="@+id/pic2"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@mipmap/u1"
+            android:src="@mipmap/u"
             android:layout_gravity="center" />
 
         <ImageView

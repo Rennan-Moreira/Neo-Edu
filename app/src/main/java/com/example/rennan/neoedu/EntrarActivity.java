@@ -303,7 +303,6 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             if (success) {
                 startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             } else {
-                p= findViewById(R.id.imgFlat).getBottom()+55+(findViewById(R.id.chbLembrar).getBottom()+findViewById(R.id.txtEsqueci).getBottom())/2;
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
 

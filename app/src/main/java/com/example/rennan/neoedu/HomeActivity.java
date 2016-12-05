@@ -25,7 +25,7 @@ import android.widget.Toast;
  */
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +35,14 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,27 +94,25 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_DisCom) {
-
-        } else if (id == R.id.nav_ModCom) {
+        if (id == R.id.nav_ModCom) {
 
         } else if (id == R.id.nav_MedAce) {
 
         } else if (id == R.id.nav_algo){
 
-            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Algoritmo"));
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Algoritmo"));
 
         } else if (id == R.id.nav_banco){
 
-            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Banco de Dados"));
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Banco de Dados"));
 
         } else if (id == R.id.nav_prog){
 
-            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Programação"));
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Programação"));
 
         } else if (id == R.id.nav_rede){
 
-            startActivity(new Intent(getApplicationContext(), Questionario.class).putExtra("name","Redes"));
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Redes"));
 
         } else if (id == R.id.nav_apli) {
 
@@ -129,4 +127,27 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onClick(View view) {
+
+        int id = view.getId();
+
+        if (id == R.id.btnAlgoritmo){
+
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Algoritmo"));
+
+        } else if (id == R.id.btnBanco){
+
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Banco de Dados"));
+
+        } else if (id == R.id.btnProg){
+
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Programação"));
+
+        } else if (id == R.id.btnRede){
+
+            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name","Redes"));
+
+        }
+    }
 }

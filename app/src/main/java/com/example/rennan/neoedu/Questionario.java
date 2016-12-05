@@ -1,14 +1,20 @@
 package com.example.rennan.neoedu;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.ColorStateList;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class Questionario extends AppCompatActivity implements View.OnClickListener {
         Button LA,LB,LC,LD,LE,LR;
@@ -207,6 +213,30 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                 LE.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.right));
                 break;
         }
+    }
+
+    public void onBackPressed(){
+        AlertDialog alert;
+        AlertDialog.Builder b = new AlertDialog.Builder(this);
+        b.setTitle("Deseja realmente sair?");
+        b.setMessage("Você perderá seu progresso neste questionário");
+        b.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+
+        b.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(getApplicationContext(), "Continuando ...",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        alert = b.create();
+        alert.show();
     }
 }
 

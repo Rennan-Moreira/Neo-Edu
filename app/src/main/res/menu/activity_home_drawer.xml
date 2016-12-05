@@ -2,21 +2,15 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_DisCom"
-            android:icon="@drawable/ic_check1"
-            android:title="Disciplinas Completadas: 1/4" />
         <item
             android:id="@+id/nav_ModCom"
             android:icon="@drawable/ic_check2"
-            android:title="Módulos Completados: 4/16" />
+            android:title="Questões respondidas: 10/10" />
         <item
             android:id="@+id/nav_MedAce"
             android:icon="@drawable/ic_media"
             android:title="Média de acertos: 80%" />
 
-    </group>
     <item android:title="Disciplinas">
         <menu>
             <group android:checkableBehavior="single">

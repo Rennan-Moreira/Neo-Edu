@@ -31,13 +31,17 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Questionario"
-            android:label="@string/title_quest"/>
+            android:label="@string/title_quest" />
         <activity
             android:name=".CadastrarActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".InterActivity"
+            android:label="@string/title_activity_inter"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

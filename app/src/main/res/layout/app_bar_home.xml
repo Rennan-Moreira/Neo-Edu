@@ -21,14 +21,414 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_home" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="30dp"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="Olá aluno RennanMP96"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:textSize="22sp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="3dp"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <TextView
+                        android:text="rennanmore@hotmail.com"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView11"
+                        android:textAlignment="textEnd"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="1dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:text="Rennan Moreira Pinto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textEnd"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="1dp"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:text="17/10/1996"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView12"
+                        android:textAlignment="textEnd"
+                        android:paddingRight="10dp" />
+
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <ImageView
+                        android:id="@+id/pic2"
+                        android:src="@mipmap/u"
+                        android:layout_gravity="left|center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp" />
+
+                    <ImageView
+                        android:id="@+id/pic"
+                        android:src="@mipmap/circle2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="left" />
+
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:text="Algoritmo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="22sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp"
+                            android:padding="10dp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:text="Treinar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btnAlgoritmo"
+                        android:layout_weight="2.5"
+                        android:textSize="14sp"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:layout_marginRight="5dp"
+                        android:onClick="onClick" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar2"
+                    android:progressTint="@color/VerdeEdu"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:text="Banco de Dados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="22sp"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:text="Conjunto de dados relacionados entre si para gerar informações"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:textSize="15sp"
+                        android:padding="10dp" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text="Treinar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/btnBanco"
+                    android:layout_weight="2.5"
+                    android:textSize="14sp"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:backgroundTint="@color/VerdeEdu"
+                    android:layout_marginRight="5dp"
+                    android:onClick="onClick" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar3"
+                android:layout_weight="1"
+                android:progress="100"
+                android:progressTint="@color/VerdeEdu"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+
+        </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:text="Programação"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="22sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:text="Técnica para desenvolver programas utilizando linguagens específicas"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp"
+                            android:padding="10dp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:text="Treinar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btnProg"
+                        android:layout_weight="2.5"
+                        android:textSize="14sp"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:layout_marginRight="5dp"
+                        android:onClick="onClick" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar4"
+                    android:layout_weight="1"
+                    android:progressTint="@color/VerdeEdu"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:text="Redes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="22sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp"
+                            android:padding="10dp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:text="Treinar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/btnRede"
+                        android:layout_weight="2.5"
+                        android:textSize="14sp"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:layout_marginRight="5dp"
+                        android:onClick="onClick" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar5"
+                    android:layout_weight="1"
+                    android:progressTint="@color/VerdeEdu"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp" />
+
+            </LinearLayout>
+
+            <View
+                android:background="@android:color/darker_gray"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="1dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Neo Edu entrará em fase de testes no inicio de 2017"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="23.5sp" />
+
+                <TextView
+                    android:text="Desenvolvedores estão planejando entregar um beta do aplicativo agora no começo de 2017 para que alguns alunos consigam testar durante o próximo semestre ... para avaliar o desempenho do aplicativo"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="O desenvolvimento de Neo Edu é iniciado por integrantes da FATEC"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView13"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:text="Em setembro de 2016, os alunos da FATEC Rubens Lara iniciaram o projeto Neo Edu. Neo Edu é um aplicativo que visa auxiliar os professores e alunos na relação com o ... aprendizado"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:id="@+id/textView14"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
 
 </android.support.design.widget.CoordinatorLayout>
