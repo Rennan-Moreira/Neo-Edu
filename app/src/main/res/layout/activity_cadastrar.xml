@@ -197,7 +197,7 @@
                 android:textStyle="bold"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:textColorLink="@android:color/background_light"
-                android:textColor="@color/colorBack"
+                android:textColor="@color/colorBack2"
                 android:onClick="startNextActivity (CadastrarActivity)"
                 android:layout_height="50dp" />
 

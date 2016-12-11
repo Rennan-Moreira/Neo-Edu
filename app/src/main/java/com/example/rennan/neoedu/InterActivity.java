@@ -9,8 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class InterActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -24,8 +27,11 @@ public class InterActivity extends AppCompatActivity implements View.OnClickList
         this.setTitle(getIntent().getStringExtra("name"));
         if(getIntent().getStringExtra("name").equals("Banco de Dados")){
             findViewById(R.id.btnBasico).setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.VerdeEdu));
-            findViewById(R.id.txtBasico).setEnabled(true);
-
+            TextView t = (TextView) findViewById(R.id.txtB);
+            t.setTextColor(ContextCompat.getColorStateList(this,R.color.colorPrimaryDark));
+            t.setEnabled(true);
+            ProgressBar p = (ProgressBar) findViewById(R.id.pbBasico);
+            p.setProgress(100);
         }
         TextView txt = (TextView) findViewById(R.id.txtBasico);
         txt.setText("Conceitos básicos para iniciantes em "+getIntent().getStringExtra("name").toLowerCase());

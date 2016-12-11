@@ -33,7 +33,7 @@
         android:id="@+id/lilPrin">
 
         <TextView
-            android:text="Algoritmo é uma sequencia finita de instruções bem definidas, cada uma devendo ser executadas mecânica ou eletrônicamente em um intervalo de tempo finito e com uma quantidade de esforço finita."
+            android:text="Bancos de dados são um conjunto de dados relacionados entre si com registros sobre pessoas, lugares ou coisas. Os dados se relacionam de forma a gerar uma informação"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView"
@@ -60,7 +60,8 @@
                 android:textSize="22sp"
                 android:textAlignment="center"
                 android:textColor="@color/confirm"
-                android:enabled="false" />
+                android:enabled="false"
+                android:id="@+id/txtB" />
 
             <LinearLayout
                 android:orientation="horizontal"

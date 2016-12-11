@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 /**
@@ -34,16 +35,6 @@ public class HomeActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-/*        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -52,6 +43,10 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        ProgressBar pb =(ProgressBar) findViewById(R.id.progressBar3);
+        pb.setProgress(100);
+
     }
 
     @Override
@@ -82,6 +77,7 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.nav_banco) {
 
             startActivity(new Intent(getApplicationContext(), Questionario.class));
+
             return true;
         }
 
@@ -93,9 +89,10 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.nav_ini) {
 
-        if (id == R.id.nav_ModCom) {
-
+            findViewById(R.id.nsvApli).setVisibility(View.GONE);
+            findViewById(R.id.nsvIni).setVisibility(View.VISIBLE);
         } else if (id == R.id.nav_MedAce) {
 
         } else if (id == R.id.nav_algo){
@@ -118,8 +115,9 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_usua) {
 
+            findViewById(R.id.nsvIni).setVisibility(View.GONE);
+            findViewById(R.id.nsvApli).setVisibility(View.VISIBLE);
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

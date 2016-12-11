@@ -230,6 +230,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     @Override
     public void onClick(View view) {
 
+        p= findViewById(R.id.imgFlat).getBottom()+55+(findViewById(R.id.chbLembrar).getBottom()+findViewById(R.id.txtEsqueci).getBottom())/2;
         switch (view.getId()){
             case R.id.txtCadastrar:
                 startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
