@@ -4,8 +4,8 @@
         <group android:checkableBehavior="all">
             <item
                 android:id="@+id/nav_ini"
-                android:icon="@drawable/ic_phone"
-                android:title="Inicio" />
+                android:icon="@drawable/ic_home"
+                android:title="Início" />
         </group>
         <item
             android:id="@+id/nav_ModCom"

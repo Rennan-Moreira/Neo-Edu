@@ -11,6 +11,8 @@ public class CriaBanco extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "cadastro.db";
     private static final int VERSAO_DB = 1;
     private static final String TAB_ALUNO ="aluno";
+    private static final int ID_ALUNO = 0;
+    private static final int ID_PROFESSOR =0;
     private static final String TAB_PROFESSOR = "professor";
     private static final String NOME_ALUNO = "nomeAluno";
     private static final String NOME_PROFESSOR = "nomeProfessor";
@@ -28,12 +30,18 @@ public class CriaBanco extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE "+TAB_ALUNO+"("+ID_ALUNO+" primary key autoincrement, "+NOME_ALUNO+" text not null, "+USER_ALUNO+" text not null, " +
+                ""+SENHA_ALUNO+" text not null, "+DATA_NASC_ALUNO+" date not null, "+EMAIL_ALUNO+" text not null)");
 
+        db.execSQL("CREATE TABLE "+TAB_PROFESSOR+"("+ID_PROFESSOR+" primary key autoincrement, "+NOME_PROFESSOR+" text not null, "+USER_PROFESSOR+" text not null, " +
+                ""+SENHA_PROFESSOR+" text not null, "+DATA_NASC_PROFESSOR+" date not null, "+EMAIL_PROFESSOR+" text not null)");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("drop table if exists "+TAB_ALUNO+" ");
+        db.execSQL("drop table if exists "+TAB_PROFESSOR+" ");
+        onCreate(db);
     }
 }

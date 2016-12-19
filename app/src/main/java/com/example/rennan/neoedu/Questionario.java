@@ -8,7 +8,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,6 +29,8 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_questionario);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             LA = (Button) findViewById(R.id.btnLetraA);
             LB = (Button) findViewById(R.id.btnLetraB);
@@ -178,11 +182,13 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
             if(tipo >= 10) {
                 txtPergunta.setText("Ainda não está disponível!");
             }else if(Acertos == 10) {
-                txtPergunta.setText("Nóóssa jureg, você acertou todas!");
+                txtPergunta.setText("Você acertou tudo, parabéns!");
             }else if(Acertos >= 6){
-                txtPergunta.setText("Quase lá! Você acertou a maioria!");
+                txtPergunta.setText("Voce acertou "+ Acertos +" questões, continue assim!");
+            }else if(Acertos == 0){
+                txtPergunta.setText("Voce errou tudo, estude mais!");
             }else{
-                txtPergunta.setText("Errou várias, vai ter que fazer o urro!");
+                txtPergunta.setText("Voce só acertou "+ Acertos +" questões, tente melhorar!");
                 txtPergunta.setTextColor(getColor(R.color.wrong));
             }
             final Handler handler = new Handler();
@@ -237,6 +243,14 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
 
         alert = b.create();
         alert.show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
+        return false;
     }
 }
 

@@ -40,12 +40,12 @@
         android:layout_height="wrap_content"
         android:text="Rennan Moreira Pinto"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:id="@+id/txtNome"
+        android:id="@+id/txtNomeNav"
         android:textSize="18sp"
         android:textAlignment="center" />
 
     <TextView
-        android:id="@+id/txtEmail"
+        android:id="@+id/txtEmailNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="rennanmore@hotmail.com"

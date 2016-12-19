@@ -57,6 +57,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     private View mLoginFormView;
     private Button mEmailSignInButton;
     private int p;
+    private String tipo="aluno";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,7 +277,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
             Controle c = new Controle();
             c.addAluno(new Aluno("RennanMP96","minhasenha","Rennan",new Date(),"Email",0));
-
+            c.addProfessor(new Professor("Professor01","minhasenha","João",new Date(),"Email",0));
 
             for(int i=0;i<c.getLengthAlunos();i++){
                 if(c.getUsuarioAluno(i).equals(mEmail) && c.getSenhaAluno(i).equals(mPassword)){
@@ -286,6 +287,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
             for(int i=0;i<c.getLengthProfessores();i++){
                 if(c.getUsuarioProfessor(i).equals(mEmail) && c.getSenhaProfessor(i).equals(mPassword)){
+                    tipo = "professor";
                     return true;
                 }
             }
@@ -302,7 +304,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             showProgress(false);
 
             if (success) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("user","professor"));
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);

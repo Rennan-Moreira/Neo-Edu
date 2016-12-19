@@ -12,6 +12,7 @@
     <color name="wrong">#b21c1f</color>
     <color name="neutral">#d6d7d7</color>
     <color name="confirm">#7f7f7f</color>
+    <color name="confirm2">#3f3f3f</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>

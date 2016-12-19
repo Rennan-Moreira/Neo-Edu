@@ -27,6 +27,7 @@
         </activity>
         <activity
             android:name=".HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Bem-Vindo ao Neo Edu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -41,7 +42,12 @@
         <activity
             android:name=".InterActivity"
             android:label="@string/title_activity_inter"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InterActivityProf"
+            android:label="@string/title_activity_inter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DesempenhoActivity"></activity>
     </application>
 
 </manifest>
