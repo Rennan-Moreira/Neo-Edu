@@ -14,16 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CadastrarActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
-        </activity>
-        <activity
             android:name=".EntrarActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,8 +27,27 @@
         </activity>
         <activity
             android:name=".HomeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Bem-Vindo ao Neo Edu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Questionario"
+            android:label="@string/title_quest" />
+        <activity
+            android:name=".CadastrarActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".InterActivity"
+            android:label="@string/title_activity_inter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".InterActivityProf"
+            android:label="@string/title_activity_inter"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DesempenhoActivity"></activity>
     </application>
 
 </manifest>

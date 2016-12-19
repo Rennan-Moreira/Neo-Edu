@@ -55,13 +55,20 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    private Button mEmailSignInButton;
+    private int p;
+    private String tipo="aluno";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrar);
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.edtUser);
+        View focusView = mEmailView;
+       // focusView.clearFocus();
 
         mPasswordView = (EditText) findViewById(R.id.edtPass);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -75,7 +82,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.btnEntrar);
+        mEmailSignInButton = (Button) findViewById(R.id.btnEntrar);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,17 +93,8 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-
-        ArrayList<String> itens = null;
-        DBManager dbManager = new DBManager(this);
-
-        for(int i=0; i<10;i++){
-            dbManager.addItem("Item nº"+1);
-        }
-
-        itens = dbManager.getAllItens();
-       // ArrayList<String> adapter =
-       //         new ArrayList<String>(this, R.layout.support_simple_spinner_dropdown_item, itens);
+        mEmailView.setText("RennanMP96");
+        mPasswordView.setText("minhasenha");
 
     }
 
@@ -232,13 +230,21 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
     @Override
     public void onClick(View view) {
-        if(view.getId()==R.id.txtCadastrar){
-            startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
-        }else if(view.getId()==R.id.txtEsqueci){
-            Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
+
+        p= findViewById(R.id.imgFlat).getBottom()+55+(findViewById(R.id.chbLembrar).getBottom()+findViewById(R.id.txtEsqueci).getBottom())/2;
+        switch (view.getId()){
+            case R.id.txtCadastrar:
+                startActivity(new Intent(getApplicationContext(), CadastrarActivity.class));
+                break;
+            case R.id.txtEsqueci:
+
+                p= findViewById(R.id.imgFlat).getBottom()+55+(findViewById(R.id.chbLembrar).getBottom()+findViewById(R.id.txtEsqueci).getBottom())/2;
+                Toast toast = Toast.makeText(getApplicationContext(), "Indisponível no momento!",
                     Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1270);
-            toast.show();
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
+                toast.show();
+                break;
+
         }
     }
 
@@ -271,6 +277,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
             Controle c = new Controle();
             c.addAluno(new Aluno("RennanMP96","minhasenha","Rennan",new Date(),"Email",0));
+            c.addProfessor(new Professor("Professor01","minhasenha","João",new Date(),"Email",0));
 
             for(int i=0;i<c.getLengthAlunos();i++){
                 if(c.getUsuarioAluno(i).equals(mEmail) && c.getSenhaAluno(i).equals(mPassword)){
@@ -280,6 +287,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
 
             for(int i=0;i<c.getLengthProfessores();i++){
                 if(c.getUsuarioProfessor(i).equals(mEmail) && c.getSenhaProfessor(i).equals(mPassword)){
+                    tipo = "professor";
                     return true;
                 }
             }
@@ -296,11 +304,12 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             showProgress(false);
 
             if (success) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("user","professor"));
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1260);
+
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
                 toast.show();
                 mEmailView.requestFocus();
             }

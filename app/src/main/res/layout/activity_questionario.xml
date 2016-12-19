@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_questionario"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.rennan.neoedu.Questionario"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lilTopo">
+
+
+        <TextView
+            android:text="Questão 1/3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtQuestao"
+            android:textAlignment="textStart"
+            android:textSize="18sp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:text="Acertos 0/3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtAcertos"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            android:textAlignment="textEnd" />
+
+    </LinearLayout>
+
+    <TextView
+        android:text="Pergunta"
+        android:layout_width="match_parent"
+        android:id="@+id/txtPergunta"
+        android:textSize="22sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lilBotao"
+        android:layout_weight="0.3">
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:id="@+id/btnLetraA"
+            android:textAlignment="center"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:textColor="@android:color/background_light"
+            android:onClick="onClick (Pergunta)"
+            android:backgroundTint="@color/confirm"
+            android:layout_height="55dp" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:id="@+id/btnLetraB"
+            android:textAlignment="center"
+            style="@style/Widget.AppCompat.Button"
+            android:backgroundTint="@color/confirm"
+            android:onClick="onClick (Pergunta)"
+            android:textColor="@android:color/background_light" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:id="@+id/btnLetraC"
+            android:textAlignment="center"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:backgroundTint="@color/confirm"
+            android:onClick="onClick (Pergunta)"
+            android:textColor="@android:color/background_light"
+            android:layout_height="55dp" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:id="@+id/btnLetraD"
+            android:textAlignment="center"
+            style="@style/Widget.AppCompat.Button"
+            android:backgroundTint="@color/confirm"
+            android:onClick="onClick (Pergunta)"
+            android:textColor="@android:color/background_light"
+            android:layout_height="55dp" />
+
+        <Button
+            android:text="Button"
+            android:layout_width="match_parent"
+            android:id="@+id/btnLetraE"
+            android:textAlignment="center"
+            style="@style/Widget.AppCompat.Button"
+            android:backgroundTint="@color/confirm"
+            android:onClick="onClick (Pergunta)"
+            android:textColor="@android:color/background_light"
+            android:layout_height="55dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

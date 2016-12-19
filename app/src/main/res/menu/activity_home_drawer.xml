@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <group android:checkableBehavior="single">
+        <group android:checkableBehavior="all">
+            <item
+                android:id="@+id/nav_ini"
+                android:icon="@drawable/ic_home"
+                android:title="Início" />
+        </group>
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_check1"
-            android:title="Disciplinas Completadas: 1/4" />
-        <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_ModCom"
             android:icon="@drawable/ic_check2"
-            android:title="Módulos Completados: 4/16" />
+            android:title="Questões respondidas: 10/10" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_MedAce"
             android:icon="@drawable/ic_media"
             android:title="Média de acertos: 80%" />
 
-    </group>
     <item android:title="Disciplinas">
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_send2"
+                    android:id="@+id/nav_algo"
                     android:icon="@drawable/ic_logic"
                     android:title="Algoritmo" />
                 <item
-                    android:id="@+id/nav_share2"
+                    android:id="@+id/nav_banco"
                     android:icon="@drawable/ic_banco"
-                    android:title="Banco de Dados" />
+                    android:title="Banco de Dados"/>
                 <item
-                    android:id="@+id/nav_send3"
+                    android:id="@+id/nav_prog"
                     android:icon="@drawable/ic_code"
                     android:title="Programação" />
                 <item
-                    android:id="@+id/nav_send4"
+                    android:id="@+id/nav_rede"
                     android:icon="@drawable/ic_rede"
                     android:title="Redes" />
             </group>
@@ -41,13 +40,13 @@
     </item>
     <item android:title="Configurações">
         <menu>
-            <group android:checkableBehavior="single">
+            <group android:checkableBehavior="all">
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_apli"
                 android:icon="@drawable/ic_phone"
                 android:title="Aplicativo" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_usua"
                 android:icon="@drawable/ic_person"
                 android:title="Usuário" />
             </group>

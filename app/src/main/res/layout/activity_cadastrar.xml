@@ -23,24 +23,15 @@
         tools:ignore="ContentDescription"
         android:paddingBottom="20dp"
         android:paddingTop="10dp"
-        android:paddingLeft="35dp"
-        android:paddingRight="30dp" />
-
-    <ProgressBar
-        android:id="@+id/login_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:visibility="gone"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
-        android:paddingBottom="100dp" />
+        android:paddingLeft="55dp"
+        android:paddingRight="50dp" />
 
     <ScrollView
         android:id="@+id/registrar_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/colorPrimary"
-        android:layout_weight="0.3"
+        android:layout_weight="0.4"
         android:paddingBottom="5dp"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
@@ -106,7 +97,6 @@
                      />
 
             </android.support.design.widget.TextInputLayout>
-
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -192,16 +182,25 @@
                 android:id="@+id/btnCadastrar"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="45dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:textColorLink="@android:color/background_light"
-                android:textColor="@color/colorBack"
+                android:textColor="@color/colorBack2"
                 android:onClick="startNextActivity (CadastrarActivity)"
                 android:layout_height="50dp" />
 
         </LinearLayout>
     </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:visibility="gone"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:paddingBottom="100dp" />
 
 </LinearLayout>
