@@ -99,14 +99,14 @@
 
                     <ImageView
                         android:id="@+id/pic2"
-                        android:src="@mipmap/u"
+                        android:src="@mipmap/circle"
                         android:layout_gravity="left|center"
                         android:layout_width="100dp"
                         android:layout_height="100dp" />
 
                     <ImageView
                         android:id="@+id/pic"
-                        android:src="@mipmap/circle2"
+                        android:src="@mipmap/circle"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="left" />
@@ -473,14 +473,14 @@
 
                     <ImageView
                         android:id="@+id/pic3"
-                        android:src="@mipmap/u"
+                        android:src="@mipmap/circle"
                         android:layout_gravity="center"
                         android:layout_width="100dp"
                         android:layout_height="100dp" />
 
                     <ImageView
                         android:id="@+id/pic4"
-                        android:src="@mipmap/circle2"
+                        android:src="@mipmap/circle"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_gravity="center" />
