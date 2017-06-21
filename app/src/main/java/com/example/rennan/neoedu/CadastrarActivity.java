@@ -14,17 +14,33 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Rennan on 20/11/2016.
@@ -50,11 +66,17 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText mPasswordView, mEmailView, mUserView;
+    private EditText mPasswordView, mPassword2View, mEmailView, mUserView, mNomeView;
     private View mProgressView, mLoginFormView;
     private RadioButton rdbEst, rdbPro;
     private ImageView flat;
     private Boolean rdb;
+    private Button mEmailSignInButton;
+    String uemail;
+    String unome;
+    String uimg;
+    String ulogin;
+    boolean retorna = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +84,8 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
         setContentView(R.layout.activity_cadastrar);
         // Configurar o login form.
         mEmailView = (EditText) findViewById(R.id.edtEmail);
-        mUserView = (EditText) findViewById(R.id.edtUser);
+        mUserView = (EditText) findViewById(R.id.edtUsuario);
+        mNomeView = (EditText) findViewById(R.id.edtNome);
         mPasswordView = (EditText) findViewById(R.id.edtPassword);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -74,8 +97,19 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
                 return false;
             }
         });
+        mPassword2View = (EditText) findViewById(R.id.edtPassword2);
+        mPassword2View.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
+                if (id == R.id.login || id == EditorInfo.IME_NULL) {
+                    attemptLogin();
+                    return true;
+                }
+                return false;
+            }
+        });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.btnCadastrar);
+        mEmailSignInButton = (Button) findViewById(R.id.btnCadastrar);
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,21 +120,20 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
         mLoginFormView = findViewById(R.id.registrar_form);
         mProgressView = findViewById(R.id.login_progress);
         flat = (ImageView) findViewById(R.id.imgFlat);
-        rdbEst = (RadioButton) findViewById(R.id.rdbEstudante);
-        rdbPro = (RadioButton) findViewById(R.id.rdbProfessor);
-        rdb = true;
+
+        mNomeView.setText("Rennan Moreira Pinto");
+        mUserView.setText("rennanMP");
+        mEmailView.setText("rennan@gmail.com");
+        mPasswordView.setText("12345678");
+        mPassword2View.setText("12345678");
     }
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.rdbEstudante) {
-            rdb = true;
-            rdbEst.setChecked(true);
-            rdbPro.setChecked(false);
-        } else {
-            rdb = false;
-            rdbEst.setChecked(false);
-            rdbPro.setChecked(true);
+        if (view.getId() == R.id.btnCadastrar) {
+
+        }else{
+
         }
     }
 
@@ -118,17 +151,34 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
         // Redefinir erros.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mPassword2View.setError(null);
+        mNomeView.setError(null);
+        mUserView.setError(null);
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
+        String nome = mNomeView.getText().toString();
+        String user = mUserView.getText().toString();
         String password = mPasswordView.getText().toString();
+        String password2 = mPassword2View.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Verifique se há uma senha válida, se o usuário digitar uma.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password)){
+            mPasswordView.setError("Este campo é obrigatório!");
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        if (!isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_text));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+        if (isPasswordIden(password,password2)){
+            mPasswordView.setError("As senhas não coincidem");
             focusView = mPasswordView;
             cancel = true;
         }
@@ -154,11 +204,11 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
             flat.setPadding(100,0,100,100);
 
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(email, password, nome, user);
             mAuthTask.execute((Void) null);
 
-            Intent next = new Intent(this, HomeActivity.class);
-            startActivity(next);
+            //Intent next = new Intent(this, HomeActivity.class);
+            //startActivity(next);
 
         }
     }
@@ -170,6 +220,11 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    private boolean isPasswordIden(String password,String password2) {
+        //TODO: Replace this with your own logic
+        return password == password2;
     }
 
     /**
@@ -215,59 +270,86 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
      * the user.
      */
     public void startNextActivity(View view){
-        Intent next = new Intent(this, HomeActivity.class);
+        Intent next = new Intent(this, EntrarActivity.class);
         startActivity(next);
-
     }
+
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
-        private final String mUser;
+        private final String mPassword;
+        private final String mNome;
+        private final String mUsuario;
 
-        UserLoginTask(String email, String password) {
+        UserLoginTask(String email, String password, String nome, String usuario) {
             mEmail = email;
-            mUser = password;
+            mPassword = password;
+            mNome = nome;
+            mUsuario = usuario;
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
+            hideKeyboard(getApplicationContext(),mEmailView);
+            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/estudante";
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+            StringRequest request = new StringRequest(Request.Method.POST,url,
+                    new Response.Listener<String>(){
+                        @Override
+                        public void onResponse(String response){ //Quando esta OK
+                            if(response.equals("0")) {
+                                Toast.makeText(CadastrarActivity.this, "Dados de usuario incorreto...", Toast.LENGTH_SHORT).show();
+                            } else {
+                                try {
+                                    retorna = true;
+                                    JSONArray jsonArray = new JSONArray(response);
+                                    // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
+
+                                    uemail =jsonArray.getJSONObject(0).getString("nm_email");
+                                    unome = jsonArray.getJSONObject(0).getString("nm_estudante");
+                                    uimg = jsonArray.getJSONObject(0).getString("ds_img");
+                                    ulogin = jsonArray.getJSONObject(0).getString("nm_login_estudante");
+                                    Toast.makeText(CadastrarActivity.this, unome, Toast.LENGTH_SHORT).show();
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError error){ // Deu Merda
+                            //Toast.makeText(CadastrarActivity.this, "Usuário e/ou senha inválidos", Toast.LENGTH_SHORT).show();
+                            retorna = false;
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    // map = Chave valor
+                    Map<String, String> parametros = new HashMap<>();
+                    parametros.put("nm_login_estudante", mUsuario);
+                    parametros.put("nm_estudante", mNome);
+                    parametros.put("nm_email", mEmail);
+                    parametros.put("nm_senha", mPassword);
+                    parametros.put("ds_img", "nada");
+                    return parametros;
+                }
+            };
+            queue.add(request);
+
             try {
-                // Simulate network access.
-                Thread.sleep(800);
+                Thread.sleep(1500);
+
             } catch (InterruptedException e) {
-                return false;
-            }
-
-            Controle c = new Controle();
-
-            for(int i=0;i<c.getLengthAlunos();i++){
-                if(c.getEmailAluno(i).equals(mEmail) && c.getUsuarioAluno(i).equals(mUser)){
-                    return true;
-                }
-            }
-
-            for(int i=0;i<c.getLengthProfessores();i++){
-                if(c.getEmailProfessor(i).equals(mEmail) && c.getUsuarioProfessor(i).equals(mUser)){
-                    return true;
-                }
-            }
-
-            if(rdb) {
-
-                c.addAluno(new Aluno("RennanMP96","minhasenha","Rennan",new Date(),"Email",0));
-            }else{
-
-                c.addProfessor(new Professor("RennanPROF","minhasenha","Rennan",new Date(),"Email",0));
+                return retorna;
             }
 
 
-
-
-
-            // TODO: register the new account here.
-            return true;
+            return false;
         }
 
         @Override
@@ -275,11 +357,16 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
-                finish();
+            if (retorna) {
+                startActivity(new Intent(getApplicationContext(), EntrarActivity.class));
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                //Toast.makeText(CadastrarActivity.this, "Usuário ou email ja Cadastrado", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(getApplicationContext(), "Usuário ou email ja cadastrado",
+                        Toast.LENGTH_SHORT);
+
+                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
+                toast.show();
+                mNomeView.requestFocus();
             }
         }
 
@@ -294,5 +381,8 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
      * Created by Rennan on 28/11/2016.
      */
 
-
+    public static void hideKeyboard(Context context, View editText) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
 }

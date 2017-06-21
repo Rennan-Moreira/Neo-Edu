@@ -22,72 +22,64 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvIni"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:id="@+id/nsvIni"
-        android:visibility="visible">
+        android:layout_marginTop="55dp"
+        android:visibility="gone">
 
         <LinearLayout
+            android:id="@+id/lilIni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="30dp"
-            android:paddingTop="10dp"
-            android:id="@+id/lilIni">
+            android:paddingTop="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:orientation="horizontal"
                 android:padding="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="0.6"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:text="Olá aluno RennanMP96"
+                        android:id="@+id/txtUser"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        android:textSize="22sp"
-                        android:paddingRight="10dp"
                         android:paddingBottom="3dp"
+                        android:paddingRight="10dp"
+                        android:text="Olá aluno RennanMP96"
+                        android:textAlignment="center"
                         android:textColor="@color/colorPrimaryDark"
-                        android:id="@+id/txtUser" />
+                        android:textSize="22sp" />
 
                     <TextView
-                        android:text="rennanmore@hotmail.com"
+                        android:id="@+id/txtNome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/txtEmail"
-                        android:textAlignment="textEnd"
-                        android:paddingRight="10dp"
                         android:paddingBottom="1dp"
+                        android:paddingRight="10dp"
+                        android:text="Rennan Moreira Pinto"
+                        android:textAlignment="center"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:text="Rennan Moreira Pinto"
+                        android:id="@+id/txtEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="textEnd"
-                        android:paddingRight="10dp"
                         android:paddingBottom="1dp"
-                        android:textSize="16sp"
-                        android:id="@+id/txtNome" />
-
-                    <TextView
-                        android:text="17/10/1996"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/txtData"
-                        android:textAlignment="textEnd"
-                        android:paddingRight="10dp" />
+                        android:paddingRight="10dp"
+                        android:text="rennanmore@hotmail.com"
+                        android:textAlignment="center"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -95,21 +87,15 @@
                     android:id="@+id/frame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2">
-
-                    <ImageView
-                        android:id="@+id/pic2"
-                        android:src="@mipmap/circle"
-                        android:layout_gravity="left|center"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1.7">
 
                     <ImageView
                         android:id="@+id/pic"
-                        android:src="@mipmap/circle"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_gravity="left" />
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_user3" />
 
 
                 </FrameLayout>
@@ -117,322 +103,323 @@
             </LinearLayout>
 
             <View
-                android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
-                android:layout_height="1dp" />
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray" />
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/lilAlg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:id="@+id/lilAlg">
+                android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Algoritmo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="22sp"
                     android:textAlignment="center"
-                    android:textColor="@color/confirm" />
+                    android:textColor="@color/confirm"
+                    android:textSize="22sp" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
                             android:textAlignment="textStart"
-                            android:textSize="15sp"
-                            android:padding="10dp" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <Button
-                        android:text="Treinar"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
                         android:id="@+id/btnAlgoritmo"
-                        android:layout_weight="2.5"
-                        android:textSize="14sp"
                         style="@style/Widget.AppCompat.Button.Colored"
-                        android:backgroundTint="@color/confirm"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
-                        android:onClick="onClick" />
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/confirm"
+                        android:onClick="onClick"
+                        android:text="Treinar"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <ProgressBar
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:id="@+id/progressBar2"
-                    android:progressTint="@color/VerdeEdu"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:progressTint="@color/VerdeEdu" />
 
             </LinearLayout>
 
             <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-                android:id="@+id/lilBan">
-
-            <TextView
-                android:text="Banco de Dados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="22sp"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:text="Conjunto de dados relacionados entre si para gerar informações"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAlignment="textStart"
-                        android:textSize="15sp"
-                        android:padding="10dp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:text="Treinar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/btnBanco"
-                    android:layout_weight="2.5"
-                    android:textSize="14sp"
-                    style="@style/Widget.AppCompat.Button.Colored"
-                    android:backgroundTint="@color/VerdeEdu"
-                    android:layout_marginRight="5dp"
-                    android:onClick="onClick" />
-
-            </LinearLayout>
-
-            <ProgressBar
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar3"
-                android:layout_weight="1"
-                android:progress="0"
-                android:progressTint="@color/VerdeEdu"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp" />
-
-        </LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/lilBan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:id="@+id/lilPro">
+                android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionados entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnBanco"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Treinar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progressBar3"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:progress="0"
+                    android:progressTint="@color/VerdeEdu" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lilPro"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Programação"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="22sp"
                     android:textAlignment="center"
-                    android:textColor="@color/confirm" />
+                    android:textColor="@color/confirm"
+                    android:textSize="22sp" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:text="Técnica para desenvolver programas utilizando linguagens específicas"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Técnica para desenvolver programas utilizando linguagens específicas"
                             android:textAlignment="textStart"
-                            android:textSize="15sp"
-                            android:padding="10dp" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <Button
-                        android:text="Treinar"
+                        android:id="@+id/btnProg"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/btnProg"
-                        android:layout_weight="2.5"
-                        android:textSize="14sp"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:backgroundTint="@color/confirm"
                         android:layout_marginRight="5dp"
-                        android:onClick="onClick" />
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/confirm"
+                        android:onClick="onClick"
+                        android:text="Treinar"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <ProgressBar
+                    android:id="@+id/progressBar4"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/progressBar4"
                     android:layout_weight="1"
-                    android:progressTint="@color/VerdeEdu"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:progressTint="@color/VerdeEdu" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
+                android:id="@+id/lilRed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:id="@+id/lilRed">
+                android:orientation="vertical">
 
                 <TextView
-                    android:text="Redes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="22sp"
+                    android:text="Redes"
                     android:textAlignment="center"
-                    android:textColor="@color/confirm" />
+                    android:textColor="@color/confirm"
+                    android:textSize="22sp" />
 
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
                     <LinearLayout
-                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
                             android:textAlignment="textStart"
-                            android:textSize="15sp"
-                            android:padding="10dp" />
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <Button
-                        android:text="Treinar"
+                        android:id="@+id/btnRede"
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/btnRede"
-                        android:layout_weight="2.5"
-                        android:textSize="14sp"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:backgroundTint="@color/confirm"
                         android:layout_marginRight="5dp"
-                        android:onClick="onClick" />
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/confirm"
+                        android:onClick="onClick"
+                        android:text="Treinar"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
                 <ProgressBar
+                    android:id="@+id/progressBar5"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/progressBar5"
                     android:layout_weight="1"
-                    android:progressTint="@color/VerdeEdu"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp" />
+                    android:paddingRight="10dp"
+                    android:progressTint="@color/VerdeEdu" />
 
             </LinearLayout>
 
             <View
-                android:background="@android:color/darker_gray"
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
-                android:layout_height="1dp" />
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:text="Neo Edu entrará em fase de testes no inicio de 2017"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="15dp"
+                    android:text="Neo Edu entrará em fase de testes no inicio de 2017"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="23.5sp" />
 
                 <TextView
-                    android:text="Desenvolvedores estão planejando entregar um beta do aplicativo agora no começo de 2017 para que alguns alunos consigam testar durante o próximo semestre ... para avaliar o desempenho do aplicativo"
+                    android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp" />
+                    android:layout_marginRight="12dp"
+                    android:text="Desenvolvedores estão planejando entregar um beta do aplicativo agora no começo de 2017 para que alguns alunos consigam testar durante o próximo semestre ... para avaliar o desempenho do aplicativo" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
-                    android:text="O desenvolvimento de Neo Edu é iniciado por integrantes da FATEC"
+                    android:id="@+id/textView13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView13"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="15dp"
+                    android:text="O desenvolvimento de Neo Edu é iniciado por integrantes da FATEC"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
 
                 <TextView
-                    android:text="Em setembro de 2016, os alunos da FATEC Rubens Lara iniciaram o projeto Neo Edu. Neo Edu é um aplicativo que visa auxiliar os professores e alunos na relação com o ... aprendizado"
+                    android:id="@+id/textView14"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:id="@+id/textView14"
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp" />
+                    android:layout_marginRight="12dp"
+                    android:text="Em setembro de 2016, os alunos da FATEC Rubens Lara iniciaram o projeto Neo Edu. Neo Edu é um aplicativo que visa auxiliar os professores e alunos na relação com o ... aprendizado" />
 
             </LinearLayout>
 
@@ -441,189 +428,183 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvUsu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="55dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:id="@+id/nsvUsu"
-        android:visibility="gone">
+        android:layout_marginTop="55dp"
+        android:visibility="visible">
+
         <LinearLayout
+            android:id="@+id/lilUsu"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingBottom="30dp"
-            android:paddingTop="10dp"
-            android:id="@+id/lilUsu">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp">
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
                 <FrameLayout
                     android:id="@+id/frame2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_gravity="center_vertical">
-
-                    <ImageView
-                        android:id="@+id/pic3"
-                        android:src="@mipmap/circle"
-                        android:layout_gravity="center"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="2">
 
                     <ImageView
                         android:id="@+id/pic4"
-                        android:src="@mipmap/circle"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_user3" />
 
 
                 </FrameLayout>
 
                 <Button
-                    android:text="Editar Imagem"
+                    android:id="@+id/btnTrocaImagem"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/btnTrocaImagem"
-                    android:layout_weight="0.5"
                     android:layout_gravity="center"
                     android:layout_marginRight="30dp"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_weight="0.5"
                     android:backgroundTint="@color/VerdeEdu"
-                    android:onClick="onClick" />
+                    android:onClick="onClick"
+                    android:text="Editar Imagem" />
 
             </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textColorHint="@color/colorAccent"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorAccent">
 
                 <EditText
+                    android:id="@+id/edtNome"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:hint="@string/prompt_name"
-                    android:id="@+id/edtNome"
                     android:maxLines="1"
                     android:text="Rennan Moreira Pinto"
-                    android:textColor="@color/confirm2"
-                    android:enabled="false" />
+                    android:textColor="@color/confirm2" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textColorHint="@color/colorPrimaryDark"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorPrimaryDark">
 
                 <EditText
+                    android:id="@+id/edtUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     android:hint="@string/prompt_user"
-                    android:id="@+id/edtUsuario"
                     android:maxLines="1"
                     android:text="RennanMP96"
-                    android:textColor="@color/confirm2"
-                    android:enabled="false" />
+                    android:textColor="@color/confirm2" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textColorHint="@color/colorPrimaryDark"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorPrimaryDark">
 
                 <AutoCompleteTextView
                     android:id="@+id/edtEmail"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:enabled="false"
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:text="rennanmore@hotmail.com"
-                    android:textColor="@color/confirm2"
-                    android:enabled="false" />
+                    android:textColor="@color/confirm2" />
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:textColorHint="@color/colorPrimaryDark"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_margin="20dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:layout_width="match_parent"
+                <Button
+                    android:id="@+id/btnEditarPerfil"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="date"
-                    android:hint="Data de nascimento"
-                    android:ems="10"
-                    android:id="@+id/edtData"
-                    android:layout_weight="1"
-                    android:text="17/10/1996"
-                    android:textColor="@color/confirm2"
-                    android:enabled="false" />
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/VerdeEdu"
+                    android:onClick="onClick"
+                    android:text="Editar Dados" />
 
-            </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/btnEditarSenha"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:backgroundTint="@color/VerdeEdu"
+                    android:onClick="onClick"
+                    android:text="Editar senha" />
+
+
+
+            </LinearLayout>
 
             <Button
-                android:text="Editar Dados"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnEditarPerfil"
-                android:layout_weight="2"
-                android:layout_marginRight="50dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="15dp"
+                android:id="@+id/btnExcluirConta"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:backgroundTint="@color/VerdeEdu"
-                android:onClick="onClick" />
-            <Button
-                android:text="Editar senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnEditarSenha"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="10dp"
                 android:layout_weight="2"
-                android:layout_marginRight="50dp"
-                android:layout_marginLeft="50dp"
-                style="@style/Widget.AppCompat.Button.Colored"
                 android:backgroundTint="@color/VerdeEdu"
-                android:onClick="onClick"  />
+                android:onClick="onClick"
+                android:text="Excluir Conta" />
 
             <Button
-                android:text="Voltar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/btnVoltar"
-                android:layout_weight="2"
-                android:layout_marginRight="50dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="45dp"
                 style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="45dp"
+                android:layout_weight="2"
                 android:backgroundTint="@color/VerdeEdu"
-                android:onClick="onClick" />
+                android:onClick="onClick"
+                android:text="Voltar" />
 
         </LinearLayout>
 

@@ -1,10 +1,25 @@
 package com.example.rennan.neoedu;
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import java.io.UnsupportedEncodingException;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.http.HttpResponseCache;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -21,11 +36,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -33,9 +50,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.NetworkResponse;
+import com.android.volley.RequestQueue;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -51,13 +85,17 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText mEmailView;
-    private EditText mPasswordView;
+    EditText mEmailView;
+    EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
     private Button mEmailSignInButton;
     private int p;
-    private String tipo="aluno";
+    String uemail;
+    String unome;
+    String uimg;
+    String ulogin;
+    boolean retorna = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +131,8 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        mEmailView.setText("RennanMP96");
-        mPasswordView.setText("minhasenha");
+        mEmailView.setText("mateus_v");
+        mPasswordView.setText("123456789");
 
     }
 
@@ -148,8 +186,6 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             cancel = true;
         }
         // Check for a valid password, if the user entered one.
-
-
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -252,6 +288,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
+
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;
@@ -261,40 +298,64 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             mEmail = email;
             mPassword = password;
         }
-
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
+            //String luser = mEmailView.toString();
+            //String lpass = mPasswordView.getText();
+            hideKeyboard(getApplicationContext(),mEmailView);
+            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/estudante/login";
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+            StringRequest request = new StringRequest(Request.Method.POST,url,
+                    new Response.Listener<String>(){
+                        @Override
+                        public void onResponse(String response){ //Quando esta OK
+                            if(response.equals("0")) {
+                                Toast.makeText(EntrarActivity.this, "Dados de usuario incorreto...", Toast.LENGTH_SHORT).show();
+                            } else {
+                                try {
+                                    retorna = true;
+                                    JSONArray jsonArray = new JSONArray(response);
+                                    // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
+
+                                    uemail =jsonArray.getJSONObject(0).getString("nm_email");
+                                    unome = jsonArray.getJSONObject(0).getString("nm_estudante");
+                                    uimg = jsonArray.getJSONObject(0).getString("ds_img");
+                                    ulogin = jsonArray.getJSONObject(0).getString("nm_login_estudante");
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError error){ // Deu Merda
+                            //Toast.makeText(EntrarActivity.this, "Usuário e/ou senha inválidos", Toast.LENGTH_SHORT).show();
+                            retorna = false;
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    // map = Chave valor
+                    Map<String, String> parametros = new HashMap<>();
+                    parametros.put("nm_login_estudante", mEmail);
+                    parametros.put("nm_senha", mPassword);
+                    return parametros;
+                }
+            };
+            queue.add(request);
 
             try {
-                // Simulate network access.
-
-                Thread.sleep(800);
+                Thread.sleep(1500);
 
             } catch (InterruptedException e) {
-                return false;
-            }
-
-            Controle c = new Controle();
-            c.addAluno(new Aluno("RennanMP96","minhasenha","Rennan",new Date(),"Email",0));
-            c.addProfessor(new Professor("Professor01","minhasenha","João",new Date(),"Email",0));
-
-            for(int i=0;i<c.getLengthAlunos();i++){
-                if(c.getUsuarioAluno(i).equals(mEmail) && c.getSenhaAluno(i).equals(mPassword)){
-                    return true;
-                }
-            }
-
-            for(int i=0;i<c.getLengthProfessores();i++){
-                if(c.getUsuarioProfessor(i).equals(mEmail) && c.getSenhaProfessor(i).equals(mPassword)){
-                    tipo = "professor";
-                    return true;
-                }
+                return retorna;
             }
 
 
-
-            // TODO: register the new account here.
             return false;
         }
 
@@ -303,8 +364,8 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             mAuthTask = null;
             showProgress(false);
 
-            if (success) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("user","professor"));
+            if (retorna) {
+                startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("email",uemail).putExtra("img",uimg).putExtra("nome",unome).putExtra("login",ulogin));
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
                         Toast.LENGTH_LONG);
@@ -321,6 +382,9 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             showProgress(false);
         }
     }
-
+    public static void hideKeyboard(Context context, View editText) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+    }
 }
 
