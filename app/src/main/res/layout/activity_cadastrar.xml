@@ -12,7 +12,6 @@
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
 
-
     <ImageView
         android:id="@+id/imgFlat"
         android:layout_width="match_parent"

@@ -95,7 +95,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     String unome;
     String uimg;
     String ulogin;
-    boolean retorna = false;
+    int uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,8 +131,8 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        mEmailView.setText("mateus_v");
-        mPasswordView.setText("123456789");
+        mEmailView.setText("rennanmp");
+        mPasswordView.setText("12345678");
 
     }
 
@@ -154,40 +154,33 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        boolean cancel = false;
         View focusView = null;
 
         if (TextUtils.isEmpty(password) ){
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
-            cancel = true;
         } else if(!isTextValid(password)){
             mPasswordView.setError(getString(R.string.error_invalid_text));
             focusView = mPasswordView;
-            cancel = true;
         } else if(isTextSmall(password)){
             mPasswordView.setError(getString(R.string.error_small_text));
             focusView = mPasswordView;
-            cancel = true;
         }
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
-            cancel = true;
         } else if (!isTextValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_text));
             focusView = mEmailView;
-            cancel = true;
         } else if (isTextSmall(email)) {
             mEmailView.setError(getString(R.string.error_small_text));
             focusView = mEmailView;
-            cancel = true;
         }
         // Check for a valid password, if the user entered one.
 
-        if (cancel) {
+        if (focusView != null) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
             focusView.requestFocus();
@@ -209,7 +202,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
     private boolean isTextValid(String text) {
         //TODO: Replace this with your own logic
         String caractere= "qwertyuiopasdfghjklçzxcvbnméáóíã"+
-                "QWERTYUIOPASDFGHJKLÇZXCVBNMÁÓÍÉÃ-_0123456789";
+                "QWERTYUIOPASDFGHJKLÇZXCVBNMÁÓÍÉÃ-_@. 0123456789";
         boolean existe;
         for(int i=0; i<text.length();i++){
             existe = false;
@@ -301,8 +294,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            //String luser = mEmailView.toString();
-            //String lpass = mPasswordView.getText();
+
             hideKeyboard(getApplicationContext(),mEmailView);
             String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/estudante/login";
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
@@ -312,10 +304,13 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
                         @Override
                         public void onResponse(String response){ //Quando esta OK
                             if(response.equals("0")) {
-                                Toast.makeText(EntrarActivity.this, "Dados de usuario incorreto...", Toast.LENGTH_SHORT).show();
+                                Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
+                                        Toast.LENGTH_LONG);
+
+                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                                toast.show();
                             } else {
                                 try {
-                                    retorna = true;
                                     JSONArray jsonArray = new JSONArray(response);
                                     // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
 
@@ -323,7 +318,10 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
                                     unome = jsonArray.getJSONObject(0).getString("nm_estudante");
                                     uimg = jsonArray.getJSONObject(0).getString("ds_img");
                                     ulogin = jsonArray.getJSONObject(0).getString("nm_login_estudante");
+                                    uid = jsonArray.getJSONObject(0).getInt("id");
 
+                                    startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("id",uid).putExtra("email",uemail).putExtra("img",uimg).putExtra("nome",unome).putExtra("login",ulogin));
+                                    showProgress(false);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -333,8 +331,13 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
                     new Response.ErrorListener(){
                         @Override
                         public void onErrorResponse(VolleyError error){ // Deu Merda
-                            //Toast.makeText(EntrarActivity.this, "Usuário e/ou senha inválidos", Toast.LENGTH_SHORT).show();
-                            retorna = false;
+                            Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
+                                    Toast.LENGTH_SHORT);
+
+                            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                            toast.show();
+
+                            showProgress(false);
                         }
                     }) {
                 @Override
@@ -349,10 +352,10 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             queue.add(request);
 
             try {
-                Thread.sleep(1500);
+                Thread.sleep(2000);
 
             } catch (InterruptedException e) {
-                return retorna;
+                return false;
             }
 
 
@@ -364,16 +367,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             mAuthTask = null;
             showProgress(false);
 
-            if (retorna) {
-                startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("email",uemail).putExtra("img",uimg).putExtra("nome",unome).putExtra("login",ulogin));
-            } else {
-                Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
-                        Toast.LENGTH_LONG);
-
-                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,p);
-                toast.show();
-                mEmailView.requestFocus();
-            }
+            mEmailView.requestFocus();
         }
 
         @Override

@@ -434,7 +434,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="55dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:id="@+id/lilUsu"
@@ -577,7 +577,6 @@
                     android:text="Editar senha" />
 
 
-
             </LinearLayout>
 
             <Button
@@ -594,13 +593,250 @@
                 android:text="Excluir Conta" />
 
             <Button
-                android:id="@+id/btnVoltar"
+                android:id="@+id/btnVoltarUsu"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="70dp"
                 android:layout_marginRight="70dp"
                 android:layout_marginTop="45dp"
+                android:layout_weight="2"
+                android:backgroundTint="@color/VerdeEdu"
+                android:onClick="onClick"
+                android:text="Voltar" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvUsuAlt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="100dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/lilUsuAlt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/edtNomeAlt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_name"
+                    android:maxLines="1"
+                    android:text="Rennan Moreira Pinto"
+                    android:textColor="@color/confirm2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorPrimaryDark">
+
+                <EditText
+                    android:id="@+id/edtUsuarioAlt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_user"
+                    android:maxLines="1"
+                    android:text="RennanMP96"
+                    android:textColor="@color/confirm2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorPrimaryDark">
+
+                <AutoCompleteTextView
+                    android:id="@+id/edtEmailAlt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:text="rennanmore@hotmail.com"
+                    android:textColor="@color/confirm2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnAlterarDados"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:backgroundTint="@color/VerdeEdu"
+                android:onClick="onClick"
+                android:text="Alterar Dados" />
+
+            <Button
+                android:id="@+id/btnVoltarAlt"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="25dp"
+                android:layout_weight="2"
+                android:backgroundTint="@color/VerdeEdu"
+                android:onClick="onClick"
+                android:text="Voltar" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvUsuSen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="100dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/lilUsuSen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="30dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/edtPasswordAnt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Senha atual"
+                    android:imeActionLabel="Alterar"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/confirm2"
+                    android:textColorHighlight="@color/confirm2"
+                    android:textColorHint="@color/confirm2"
+                    android:textColorLink="@color/confirm2"
+                    android:textCursorDrawable="@color/confirm2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/edtPasswordNov"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Senha atual"
+                    android:imeActionLabel="Alterar"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/confirm2"
+                    android:textColorHighlight="@color/confirm2"
+                    android:textColorHint="@color/confirm2"
+                    android:textColorLink="@color/confirm2"
+                    android:textCursorDrawable="@color/confirm2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="0.5"
+                android:textColorHint="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/edtPasswordNov2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Senha atual"
+                    android:imeActionLabel="Alterar"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textColor="@color/confirm2"
+                    android:textColorHighlight="@color/confirm2"
+                    android:textColorHint="@color/confirm2"
+                    android:textColorLink="@color/confirm2"
+                    android:textCursorDrawable="@color/confirm2" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnAlterarSenha"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="2"
+                android:backgroundTint="@color/VerdeEdu"
+                android:onClick="onClick"
+                android:text="Alterar Senha" />
+
+            <Button
+                android:id="@+id/btnVoltarSen"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="70dp"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="25dp"
                 android:layout_weight="2"
                 android:backgroundTint="@color/VerdeEdu"
                 android:onClick="onClick"
@@ -683,7 +919,7 @@
                 android:text="Voltar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnVoltar2"
+                android:id="@+id/btnVoltarApl"
                 android:layout_weight="2"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
@@ -695,6 +931,17 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+        android:paddingBottom="500dp"
+        android:paddingLeft="100dp"
+        android:paddingRight="100dp"
+        android:paddingTop="500dp"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

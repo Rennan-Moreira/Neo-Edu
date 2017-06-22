@@ -68,15 +68,12 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
     // UI references.
     private EditText mPasswordView, mPassword2View, mEmailView, mUserView, mNomeView;
     private View mProgressView, mLoginFormView;
-    private RadioButton rdbEst, rdbPro;
     private ImageView flat;
-    private Boolean rdb;
     private Button mEmailSignInButton;
     String uemail;
     String unome;
     String uimg;
     String ulogin;
-    boolean retorna = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +119,7 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
         flat = (ImageView) findViewById(R.id.imgFlat);
 
         mNomeView.setText("Rennan Moreira Pinto");
-        mUserView.setText("rennanMP");
+        mUserView.setText("rennanmp");
         mEmailView.setText("rennan@gmail.com");
         mPasswordView.setText("12345678");
         mPassword2View.setText("12345678");
@@ -130,10 +127,8 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.btnCadastrar) {
-
-        }else{
-
+        if (view.getId() == R.id.btnVoltar) {
+            finish();
         }
     }
 
@@ -301,10 +296,9 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
                         @Override
                         public void onResponse(String response){ //Quando esta OK
                             if(response.equals("0")) {
-                                Toast.makeText(CadastrarActivity.this, "Dados de usuario incorreto...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CadastrarActivity.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
                             } else {
                                 try {
-                                    retorna = true;
                                     JSONArray jsonArray = new JSONArray(response);
                                     // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
 
@@ -312,19 +306,29 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
                                     unome = jsonArray.getJSONObject(0).getString("nm_estudante");
                                     uimg = jsonArray.getJSONObject(0).getString("ds_img");
                                     ulogin = jsonArray.getJSONObject(0).getString("nm_login_estudante");
-                                    Toast.makeText(CadastrarActivity.this, unome, Toast.LENGTH_SHORT).show();
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+                                showProgress(false);
+                                Toast toast = Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso!",
+                                        Toast.LENGTH_SHORT);
+
+                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                                toast.show();
+                                finish();
                             }
                         }
                     },
                     new Response.ErrorListener(){
                         @Override
                         public void onErrorResponse(VolleyError error){ // Deu Merda
-                            //Toast.makeText(CadastrarActivity.this, "Usuário e/ou senha inválidos", Toast.LENGTH_SHORT).show();
-                            retorna = false;
+                            Toast toast = Toast.makeText(getApplicationContext(), "Usuário ou email ja cadastrado",
+                                    Toast.LENGTH_SHORT);
+
+                            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
+                            toast.show();
+                            showProgress(false);
                         }
                     }) {
                 @Override
@@ -345,7 +349,7 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
                 Thread.sleep(1500);
 
             } catch (InterruptedException e) {
-                return retorna;
+                return false;
             }
 
 
@@ -356,18 +360,7 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
-            if (retorna) {
-                startActivity(new Intent(getApplicationContext(), EntrarActivity.class));
-            } else {
-                //Toast.makeText(CadastrarActivity.this, "Usuário ou email ja Cadastrado", Toast.LENGTH_SHORT).show();
-                Toast toast = Toast.makeText(getApplicationContext(), "Usuário ou email ja cadastrado",
-                        Toast.LENGTH_SHORT);
-
-                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
-                toast.show();
-                mNomeView.requestFocus();
-            }
+            mNomeView.requestFocus();
         }
 
         @Override
