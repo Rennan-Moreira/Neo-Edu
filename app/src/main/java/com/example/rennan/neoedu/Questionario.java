@@ -18,6 +18,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +47,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
     Controle c = new Controle();
     int tipo = 0;
     int contOk =0;
-
+    LinearLayout res;
     private View mProgressView;
 
     private View lilT;
@@ -128,7 +129,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionario);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        res = (LinearLayout) findViewById(R.id.lilResolucao);
         mProgressView = findViewById(R.id.proQue);
         lilT = findViewById(R.id.lilTopo);
         lilB = findViewById(R.id.lilBotao);
@@ -151,7 +152,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
 
         this.setTitle(getIntent().getStringExtra("name"));
         pp = new PegarPergunta();
-        //pp.execute((Void) null);
+        pp.execute((Void) null);
     }
 
     @Override
@@ -546,6 +547,11 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
     public void resolucao(){
 
         this.setTitle("Resolução");
+        res.setVisibility(View.VISIBLE);
+        findViewById(R.id.lilResolucao).setVisibility(View.VISIBLE);
+        findViewById(R.id.lilTopo).setVisibility(View.GONE);
+        findViewById(R.id.txtPergunta).setVisibility(View.GONE);
+        findViewById(R.id.proQue).setVisibility(View.GONE);
     }
 }
 
