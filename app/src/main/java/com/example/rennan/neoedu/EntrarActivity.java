@@ -321,7 +321,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
                                     uid = jsonArray.getJSONObject(0).getInt("id");
 
                                     startActivity(new Intent(getApplicationContext(), HomeActivity.class).putExtra("id",uid).putExtra("email",uemail).putExtra("img",uimg).putExtra("nome",unome).putExtra("login",ulogin));
-                                    showProgress(false);
+                                    //showProgress(false);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

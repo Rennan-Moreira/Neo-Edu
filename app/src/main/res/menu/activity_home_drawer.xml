@@ -8,16 +8,16 @@
                 android:title="Início" />
         </group>
     <item
-            android:id="@+id/nav_MedAce"
-            android:icon="@drawable/ic_media2"
-            android:title="Média de acertos: 80%" />
+        android:id="@+id/nav_MedAce"
+        android:icon="@drawable/ic_media2"
+        android:title="Média de acertos: 80%" />
 
     <item android:title="Disciplinas">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_banco"
-                    android:icon="@drawable/ic_banco"
+                    android:icon="@drawable/ic_bd"
                     android:title="Banco de Dados"/>
                 <item
                     android:id="@+id/nav_algo"
@@ -26,11 +26,11 @@
                 <item
                     android:id="@+id/nav_prog"
                     android:icon="@drawable/ic_code"
-                    android:title="Orientação a objeto" />
+                    android:title="Orientação a Objeto" />
                 <item
                     android:id="@+id/nav_rede"
                     android:icon="@drawable/ic_rede"
-                    android:title="Rede de computadores" />
+                    android:title="Rede de Computadores" />
             </group>
         </menu>
     </item>

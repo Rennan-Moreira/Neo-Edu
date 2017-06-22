@@ -157,12 +157,48 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        if(findViewById(R.id.nsvUsuAlt).getVisibility() == View.VISIBLE || findViewById(R.id.nsvUsuSen).getVisibility() == View.VISIBLE) {
+            this.setTitle("Configurações do Usuário");
+            findViewById(R.id.nsvUsuAlt).setVisibility(View.GONE);
+            findViewById(R.id.nsvUsuSen).setVisibility(View.GONE);
+            findViewById(R.id.nsvUsu).setVisibility(View.VISIBLE);
+        }else if(findViewById(R.id.nsvIni).getVisibility() == View.VISIBLE){
+            AlertDialog alert;
+            AlertDialog.Builder b = new AlertDialog.Builder(this);
+            b.setTitle("Deseja realmente sair da conta?");
+            b.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+                }
+            });
+
+            b.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+            alert = b.create();
+            alert.show();
+        }else{
+            this.setTitle("Início");
+            findViewById(R.id.nsvIni).setVisibility(View.VISIBLE);
+            findViewById(R.id.nsvApli).setVisibility(View.GONE);
+            findViewById(R.id.nsvUsu).setVisibility(View.GONE);
         }
+
+
+
+
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
     }
 
     @Override

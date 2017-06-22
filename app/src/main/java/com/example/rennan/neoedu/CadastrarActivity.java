@@ -310,7 +310,7 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                showProgress(false);
+                                //showProgress(false);
                                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso!",
                                         Toast.LENGTH_SHORT);
 
@@ -328,7 +328,7 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
 
                             toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
                             toast.show();
-                            showProgress(false);
+                            //showProgress(false);
                         }
                     }) {
                 @Override
