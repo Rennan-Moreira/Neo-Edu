@@ -8,7 +8,7 @@
                 android:title="Início" />
             <item
                 android:id="@+id/nav_turma"
-                android:icon="@drawable/ic_home"
+                android:icon="@drawable/ic_turma"
                 android:title="Turmas" />
         </group>
     <item
@@ -22,19 +22,19 @@
                 <item
                     android:id="@+id/nav_banco"
                     android:icon="@drawable/ic_bd"
-                    android:title="Banco de Dados"/>
+                    android:title="Banco de dados"/>
                 <item
                     android:id="@+id/nav_algo"
                     android:icon="@drawable/ic_soft"
-                    android:title="Engenharia de Software" />
+                    android:title="Engenharia de software I" />
                 <item
                     android:id="@+id/nav_prog"
                     android:icon="@drawable/ic_code"
-                    android:title="Orientação a Objeto" />
+                    android:title="Prog. orientada a objeto" />
                 <item
                     android:id="@+id/nav_rede"
                     android:icon="@drawable/ic_rede"
-                    android:title="Rede de Computadores" />
+                    android:title="Redes de computadores" />
             </group>
         </menu>
     </item>

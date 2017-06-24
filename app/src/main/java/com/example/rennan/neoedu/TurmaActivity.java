@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,13 +27,10 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class BuscaActivity extends AppCompatActivity implements View.OnClickListener{
+public class TurmaActivity extends AppCompatActivity implements View.OnClickListener{
 
     private PegarTudo pt = null;
     private ListView listaP;
@@ -57,7 +53,7 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busca);
+        setContentView(R.layout.activity_turma);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -187,7 +183,7 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
                             }
 
                             CustomList adapter = new
-                                    CustomList(BuscaActivity.this, disc, nome);
+                                    CustomList(TurmaActivity.this, disc, nome);
                             list=(ListView)findViewById(R.id.lvListaP);
                             list.setAdapter(adapter);
                             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -195,7 +191,7 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view,
                                                         int position, long id) {
-                                    Toast.makeText(BuscaActivity.this, "Voce Clicou em " +disc[+ position], Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(TurmaActivity.this, "Voce Clicou em " +disc[+ position], Toast.LENGTH_SHORT).show();
 
                                 }
                             });
@@ -207,7 +203,7 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){ // Deu Merda
-                        Toast.makeText(BuscaActivity.this, "Erro na conexão", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TurmaActivity.this, "Erro na conexão", Toast.LENGTH_SHORT).show();
 
                         showProgress(false);
                     }
