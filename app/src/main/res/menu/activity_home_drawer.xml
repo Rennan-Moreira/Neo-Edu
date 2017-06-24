@@ -6,6 +6,10 @@
                 android:id="@+id/nav_ini"
                 android:icon="@drawable/ic_home"
                 android:title="Início" />
+            <item
+                android:id="@+id/nav_turma"
+                android:icon="@drawable/ic_home"
+                android:title="Turmas" />
         </group>
     <item
         android:id="@+id/nav_MedAce"

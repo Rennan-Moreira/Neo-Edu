@@ -236,7 +236,7 @@ public class HomeActivity extends AppCompatActivity
             findViewById(R.id.nsvIni).setVisibility(View.VISIBLE);
             findViewById(R.id.nsvApli).setVisibility(View.GONE);
             findViewById(R.id.nsvUsu).setVisibility(View.GONE);
-        } else if (id == R.id.nav_MedAce) {
+        } else if (id == R.id.nav_MedAce){
             return false;
         } else if (id == R.id.nav_algo){
             Toast.makeText(getApplicationContext(), "Não disponível", Toast.LENGTH_SHORT).show();
@@ -260,13 +260,14 @@ public class HomeActivity extends AppCompatActivity
             findViewById(R.id.nsvIni).setVisibility(View.GONE);
             findViewById(R.id.nsvApli).setVisibility(View.VISIBLE);
             findViewById(R.id.nsvUsu).setVisibility(View.GONE);
+        } else if (id == R.id.nav_turma) {
+            startActivity(new Intent(this, BuscaActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     @Override
     public void onClick(View view) {
@@ -332,6 +333,7 @@ public class HomeActivity extends AppCompatActivity
         alert = b.create();
         alert.show();
     }
+
     private boolean isTextValid(String text) {
         //TODO: Replace this with your own logic
         String caractere= "qwertyuiopasdfghjklçzxcvbnméáóíã"+

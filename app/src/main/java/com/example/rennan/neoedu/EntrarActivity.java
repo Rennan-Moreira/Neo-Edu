@@ -220,7 +220,6 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
         return text.length() < 8;
     }
 
-
     /**
      * Shows the progress UI and hides the login form.
      */
@@ -352,7 +351,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             queue.add(request);
 
             try {
-                Thread.sleep(2000);
+                Thread.sleep(10000);
 
             } catch (InterruptedException e) {
                 return false;
@@ -376,6 +375,7 @@ public class EntrarActivity extends AppCompatActivity implements OnClickListener
             showProgress(false);
         }
     }
+
     public static void hideKeyboard(Context context, View editText) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);

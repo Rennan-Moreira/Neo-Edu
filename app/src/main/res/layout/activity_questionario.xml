@@ -60,7 +60,7 @@
         android:layout_weight="0.8"
         android:orientation="vertical"
         android:padding="10dp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <Button
             android:id="@+id/btnLetraA"
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
-            android:onClick="onClick (Pergunta)"
+            android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
             android:textColor="@android:color/background_light" />
@@ -79,7 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
-            android:onClick="onClick (Pergunta)"
+            android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
             android:textColor="@android:color/background_light" />
@@ -90,7 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
-            android:onClick="onClick (Pergunta)"
+            android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
             android:textColor="@android:color/background_light" />
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
-            android:onClick="onClick (Pergunta)"
+            android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
             android:textColor="@android:color/background_light" />
@@ -131,13 +131,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/btnQ1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="1ª Q" />
 
             <Button
@@ -145,6 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="2ª Q" />
 
             <Button
@@ -152,6 +155,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="3ª Q" />
 
             <Button
@@ -159,6 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="4ª Q" />
 
             <Button
@@ -166,6 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="5ª Q" />
 
             <Button
@@ -173,6 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="6ª Q" />
 
             <Button
@@ -180,6 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="7ª Q" />
 
             <Button
@@ -187,6 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="8ª Q" />
 
             <Button
@@ -194,6 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="9ª Q" />
 
             <Button
@@ -201,6 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onClick"
                 android:text="10ª Q" />
         </LinearLayout>
 
@@ -213,40 +224,63 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="visible">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/txtTitulo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Resolução: 1ª Questão"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="22sp" />
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
+
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/txtEnunciado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text='Enunciado: "Banco de dados é considerado um conjunto de:"'
+                android:text='Enunciado:\n"Banco de dados é considerado um conjunto de:"'
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
+
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/txtCorreto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text='Alternativa Correta: "Dados Relacionados"'
+                android:text='Alternativa Correta:\n"Dados Relacionados"'
                 android:textAlignment="center"
                 android:textSize="18sp" />
 
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
+
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/txtResolucao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Resolução: é uma coleção de dados inter-relacionados, representando informações sobre um domínio específico”, ou seja, sempre que for possível agrupar informações que se relacionam e tratam de um mesmo assunto"
+                android:text="Resolução: \n é uma coleção de dados inter-relacionados, representando informações sobre um domínio específico”, ou seja, sempre que for possível agrupar informações que se relacionam e tratam de um mesmo assunto"
                 android:textAlignment="center"
                 android:textSize="18sp" />
         </LinearLayout>

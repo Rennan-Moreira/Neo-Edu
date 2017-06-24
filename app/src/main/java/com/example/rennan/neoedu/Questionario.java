@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -41,21 +42,23 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 public class Questionario extends AppCompatActivity implements View.OnClickListener {
     Button LA,LB,LC,LD;
-    TextView txtPergunta,txtAcertos,txtQuestao;
+    TextView txtPergunta,txtAcertos,txtQuestao,txtTitulo,txtEnunciado,txtCorreto,txtResolucao;
     int ContaPergunta=-1,Acertos;
-    boolean continua = true;
-    Controle c = new Controle();
-    int tipo = 0;
     int contOk =0;
-    LinearLayout res;
-    private View mProgressView;
+    int sel[] = new int[10];
 
+    boolean continua = true;
+
+    LinearLayout res;
+
+    private View mProgressView;
     private View lilT;
     private View lilB;
 
-    private PegarPergunta pp = null;
+    private PegarPergunta2 pp = null;
+    private PegarAlternativa2 pa = null;
 
-    private PegarAlternativa pa = null;
+    private EnviarResposta er = null;
 
     public class Pergunta {
         private int id;
@@ -101,6 +104,10 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
             return certo;
         }
 
+        public int getId() {
+            return id;
+        }
+
         public void setLA(String la){
             this.LA = la;
         }
@@ -119,6 +126,10 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
 
         public void setCerto(int certo){
             this.certo = certo;
+        }
+
+        public void setId(int id){
+            this.id = id;
         }
     }
 
@@ -149,18 +160,35 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         txtPergunta = (TextView) findViewById(R.id.txtPergunta);
         txtAcertos = (TextView) findViewById(R.id.txtAcertos);
         txtQuestao = (TextView) findViewById(R.id.txtQuestao);
-
+        btnEnabled();
         this.setTitle(getIntent().getStringExtra("name"));
-        pp = new PegarPergunta();
-        pp.execute((Void) null);
+        pp = new PegarPergunta2();
+        //pp.execute((Void) null);
+        PegarPergunta();
+
+    }
+
+    public void btnEnabled(){
+        if(LA.isEnabled()){
+            LA.setEnabled(false);
+            LB.setEnabled(false);
+            LC.setEnabled(false);
+            LD.setEnabled(false);
+        }else{
+            LA.setEnabled(true);
+            LB.setEnabled(true);
+            LC.setEnabled(true);
+            LD.setEnabled(true);
+        }
     }
 
     @Override
     public void onClick(View view) {
-        int tempo = 2000;
-
+        btnEnabled();
+        int tempo = 2500;
+        int vl =0;
         //TrocaPergunta();
-        if (continua) {
+        if (continua && ContaPergunta < 10) {
             int Cor = R.color.wrong;
             String Resultado = "Errado";
             //TrocaCor();
@@ -222,12 +250,71 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                     break;
             }
 
+            if(Resultado.equals("Correto")){
+                sel[ContaPergunta] = R.color.right;
+            }else{
+                sel[ContaPergunta] = R.color.wrong;
+            }
+
             continua = false;
 
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 public void run() {TrocaPergunta();continua = true;}
             }, tempo);
+        }else{
+            switch (view.getId()) {
+                case R.id.btnQ1:
+                    vl=0;
+                    break;
+                case R.id.btnQ2:
+                    vl=1;
+                    break;
+                case R.id.btnQ3:
+                    vl=2;
+                    break;
+                case R.id.btnQ4:
+                    vl=3;
+                    break;
+                case R.id.btnQ5:
+                    vl=4;
+                    break;
+                case R.id.btnQ6:
+                    vl=5;
+                    break;
+                case R.id.btnQ7:
+                    vl=6;
+                    break;
+                case R.id.btnQ8:
+                    vl=7;
+                    break;
+                case R.id.btnQ9:
+                    vl=8;
+                    break;
+                case R.id.btnQ10:
+                    vl=9;
+                    break;
+            }
+
+            txtTitulo.setText("Resolução - "+(vl+1)+"ª Questão");
+            txtTitulo.setTextColor(ContextCompat.getColorStateList(this, sel[vl]));
+            txtEnunciado.setText("Enunciado: '"+perguntas.get(vl).getEnunciado()+"'");
+            txtResolucao.setText(perguntas.get(vl).getResolucao());
+            switch (perguntas.get(vl).getCerto()){
+                case 1:
+                    txtCorreto.setText(perguntas.get(vl).getLA());
+                    break;
+                case 2:
+                    txtCorreto.setText(perguntas.get(vl).getLB());
+                    break;
+                case 3:
+                    txtCorreto.setText(perguntas.get(vl).getLC());
+                    break;
+                case 4:
+                    txtCorreto.setText(perguntas.get(vl).getLD());
+                    break;
+            }
+
         }
     }
 
@@ -270,11 +357,12 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
 //                txtPergunta.setText("Voce só acertou "+ Acertos +" questões, tente melhorar!");
 //                txtPergunta.setTextColor(getColor(R.color.wrong));
 //            }
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {Fechar();}
-            }, 4000);
+//            final Handler handler = new Handler();
+//            handler.postDelayed(new Runnable() {
+//                public void run() {Fechar();}
+//            }, 4000);
         }
+        btnEnabled();
     }
 
     public void Fechar(){
@@ -299,27 +387,31 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
     }
 
     public void onBackPressed(){
-        AlertDialog alert;
-        AlertDialog.Builder b = new AlertDialog.Builder(this);
-        b.setTitle("Deseja realmente sair?");
-        b.setMessage("Você perderá seu progresso neste questionário");
-        b.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
+        if (ContaPergunta < 10) {
+            AlertDialog alert;
+            AlertDialog.Builder b = new AlertDialog.Builder(this);
+            b.setTitle("Deseja realmente sair?");
+            b.setMessage("Você perderá seu progresso neste questionário");
+            b.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    finish();
+                }
+            });
 
-        b.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "Continuando ...",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
+            b.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Toast.makeText(getApplicationContext(), "Continuando ...",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
 
-        alert = b.create();
-        alert.show();
+            alert = b.create();
+            alert.show();
+        }else {
+            Fechar();
+        }
     }
 
     @Override
@@ -330,13 +422,68 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-    public class PegarPergunta extends AsyncTask<Void, Void, Boolean> {
+
+    public void PegarPergunta(){
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/25/modulo/1";
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+        StringRequest request = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){ //Quando esta OK
+                        if(response.equals("0")) {
+                            Toast.makeText(Questionario.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
+                        } else {
+//                                Toast toast = Toast.makeText(getApplicationContext(), "Teste"+i,
+//                                        Toast.LENGTH_SHORT);
+//
+//                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+//                                toast.show();
+                            try {
+
+                                JSONArray jsonArray = new JSONArray(response);
+                                // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
+                                for (int i=0;i< jsonArray.length();i++) {
+                                    perguntas.add(new Pergunta(jsonArray.getJSONObject(i).getInt("id"),jsonArray.getJSONObject(i).getString("ds_questao"),jsonArray.getJSONObject(i).getString("ds_resolucao")));
+                                    PegarAlternativa(jsonArray.getJSONObject(i).getInt("id"),i);
+                                    pa = new PegarAlternativa2(jsonArray.getJSONObject(i).getInt("id"),i);
+                                    //pa.execute((Void) null);
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){ // Deu Merda
+                        Toast toast = Toast.makeText(getApplicationContext(), "Erro na conexão!",
+                                Toast.LENGTH_SHORT);
+
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
+                        toast.show();
+                        //showProgress(false);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // map = Chave valor
+                Map<String, String> parametros = new HashMap<>();
+                return parametros;
+            }
+        };
+        queue.add(request);
+    }
+
+    public class PegarPergunta2 extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/4/modulo/1";
+            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/25/modulo/1";
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
 
             StringRequest request = new StringRequest(Request.Method.GET,url,
@@ -346,18 +493,20 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                             if(response.equals("0")) {
                                 Toast.makeText(Questionario.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast toast = Toast.makeText(getApplicationContext(), "Teste1!",
-                                        Toast.LENGTH_SHORT);
-
-                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
-                                //toast.show();
+//                                Toast toast = Toast.makeText(getApplicationContext(), "Teste"+i,
+//                                        Toast.LENGTH_SHORT);
+//
+//                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+//                                toast.show();
                                 try {
+
                                     JSONArray jsonArray = new JSONArray(response);
                                     // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
                                     for (int i=0;i< jsonArray.length();i++) {
                                         perguntas.add(new Pergunta(jsonArray.getJSONObject(i).getInt("id"),jsonArray.getJSONObject(i).getString("ds_questao"),jsonArray.getJSONObject(i).getString("ds_resolucao")));
-                                        pa = new PegarAlternativa(jsonArray.getJSONObject(i).getInt("id"),i);
-                                        pa.execute((Void) null);
+                                        PegarAlternativa(jsonArray.getJSONObject(i).getInt("id"),i);
+                                        //pa = new PegarAlternativa2(jsonArray.getJSONObject(i).getInt("id"),i);
+                                        //pa.execute((Void) null);
                                     }
 
                                 } catch (JSONException e) {
@@ -387,7 +536,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
             queue.add(request);
 
             try {
-                Thread.sleep(1500);
+                Thread.sleep(100);
                 return true;
             } catch (InterruptedException e) {
                 return false;
@@ -406,12 +555,76 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public class PegarAlternativa extends AsyncTask<Void, Void, Boolean> {
+    public void PegarAlternativa(int ID , final int Con){
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/alternativa/"+ID;
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+        StringRequest request = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){ //Quando esta OK
+                        if(response.equals("0")) {
+                            Toast.makeText(Questionario.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "ID = "+Con,
+                                    Toast.LENGTH_SHORT);
+                            contOk ++;
+                            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                            //toast.show();
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
+                                perguntas.get(Con).setLA(jsonArray.getJSONObject(0).getString("ds_alternativa"));
+                                perguntas.get(Con).setLB(jsonArray.getJSONObject(1).getString("ds_alternativa"));
+                                perguntas.get(Con).setLC(jsonArray.getJSONObject(2).getString("ds_alternativa"));
+                                perguntas.get(Con).setLD(jsonArray.getJSONObject(3).getString("ds_alternativa"));
+
+                                for (int i=0; i< jsonArray.length();i++){
+                                    if (jsonArray.getJSONObject(i).getInt("ic_certa") == 1){
+                                        perguntas.get(Con).setCerto(i+1);
+                                    }
+                                }
+                                if (contOk == 3){
+                                    TrocaPergunta();
+                                    showProgress(false);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){ // Deu Merda
+                        Toast toast = Toast.makeText(getApplicationContext(), "Erro na conexão",
+                                Toast.LENGTH_SHORT);
+
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
+                        toast.show();
+                        //showProgress(false);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // map = Chave valor
+                Map<String, String> parametros = new HashMap<>();
+                return parametros;
+            }
+        };
+        queue.add(request);
+
+
+    }
+
+    public class PegarAlternativa2 extends AsyncTask<Void, Void, Boolean> {
 
         private final int ID;
         private final int con;
 
-        PegarAlternativa(int idr, int conr) {
+        PegarAlternativa2(int idr, int conr) {
             ID = idr;
             con = conr;
         }
@@ -419,69 +632,8 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/alternativa/"+ID;
-            RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
-
-            StringRequest request = new StringRequest(Request.Method.GET,url,
-                    new Response.Listener<String>(){
-                        @Override
-                        public void onResponse(String response){ //Quando esta OK
-                            if(response.equals("0")) {
-                                Toast.makeText(Questionario.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast toast = Toast.makeText(getApplicationContext(), "ID = "+con,
-                                        Toast.LENGTH_SHORT);
-                                contOk ++;
-                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
-                                //toast.show();
-                                try {
-                                    JSONArray jsonArray = new JSONArray(response);
-                                    // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
-                                    perguntas.get(con).setLA(jsonArray.getJSONObject(0).getString("ds_alternativa"));
-                                    perguntas.get(con).setLB(jsonArray.getJSONObject(1).getString("ds_alternativa"));
-                                    perguntas.get(con).setLC(jsonArray.getJSONObject(2).getString("ds_alternativa"));
-                                    perguntas.get(con).setLD(jsonArray.getJSONObject(3).getString("ds_alternativa"));
-
-                                    for (int i=0; i< jsonArray.length();i++){
-                                        if (jsonArray.getJSONObject(i).getInt("ic_certa") == 1){
-                                            perguntas.get(con).setCerto(i+1);
-                                        }
-                                    }
-                                    if (contOk == 1){
-
-                                        TrocaPergunta();
-                                        showProgress(false);
-                                    }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-
-                            }
-                        }
-                    },
-                    new Response.ErrorListener(){
-                        @Override
-                        public void onErrorResponse(VolleyError error){ // Deu Merda
-                            Toast toast = Toast.makeText(getApplicationContext(), "Erro na conexão",
-                                    Toast.LENGTH_SHORT);
-
-                            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
-                            toast.show();
-                            //showProgress(false);
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    // map = Chave valor
-                    Map<String, String> parametros = new HashMap<>();
-                    return parametros;
-                }
-            };
-            queue.add(request);
-
             try {
-                Thread.sleep(1500);
+                Thread.sleep(300);
                 return true;
             } catch (InterruptedException e) {
                 return false;
@@ -492,11 +644,90 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         @Override
         protected void onPostExecute(final Boolean success) {
             pa = null;
+
         }
 
         @Override
         protected void onCancelled() {
             pa = null;
+        }
+    }
+
+    public class EnviarResposta extends AsyncTask<Void, Void, Boolean> {
+        //{"turma_id": "3", "estudante_id": "54" ,"questao_id": "4","ic_resposta": "1"}
+        private final String mT;
+        private final String mE;
+        private final String mQ;
+        private final String mR;
+
+        EnviarResposta(int T, int E, int Q, int R) {
+            mT = ""+T;
+            mE = ""+E;
+            mQ = ""+Q;
+            mR = ""+R;
+        }
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            // TODO: attempt authentication against a network service.
+
+            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/resposta";
+            RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+            StringRequest request = new StringRequest(Request.Method.POST,url,
+                    new Response.Listener<String>(){
+                        @Override
+                        public void onResponse(String response){ //Quando esta OK
+                            if(response.equals("0")) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
+                                        Toast.LENGTH_LONG);
+
+                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                                toast.show();
+                            } else {
+                                try {
+                                    JSONArray jsonArray = new JSONArray(response);
+                                    // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
+                                    //showProgress(false);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    },
+                    new Response.ErrorListener(){
+                        @Override
+                        public void onErrorResponse(VolleyError error){ // Deu Merda
+                            Toast toast = Toast.makeText(getApplicationContext(), "ERRO",
+                                    Toast.LENGTH_SHORT);
+
+                            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                            toast.show();
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    // map = Chave valor
+                    Map<String, String> parametros = new HashMap<>();
+                    parametros.put("turma_id", mT);
+                    parametros.put("estudante_id", mE);
+                    parametros.put("questao_id", mQ);
+                    parametros.put("ic_resposta", mR);
+                    return parametros;
+                }
+            };
+            queue.add(request);
+
+            return false;
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            er = null;
+        }
+
+        @Override
+        protected void onCancelled() {
+            er = null;
         }
     }
 
@@ -508,6 +739,8 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
             int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
+            lilT.setVisibility(show ? View.GONE : View.VISIBLE);
+            lilB.setVisibility(show ? View.GONE : View.VISIBLE);
             lilT.setVisibility(show ? View.GONE : View.VISIBLE);
             lilT.animate().setDuration(shortAnimTime).alpha(
                     show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
@@ -544,7 +777,20 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    public int resp(int i){
+        if(sel[i]==R.color.right){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     public void resolucao(){
+
+        for(int i =0;i<10;i++) {
+            er = new EnviarResposta(6, 58, perguntas.get(i).getId(), resp(i));
+            er.execute((Void) null);
+        }
 
         this.setTitle("Resolução");
         res.setVisibility(View.VISIBLE);
@@ -552,6 +798,41 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.lilTopo).setVisibility(View.GONE);
         findViewById(R.id.txtPergunta).setVisibility(View.GONE);
         findViewById(R.id.proQue).setVisibility(View.GONE);
+        txtTitulo = (TextView) findViewById(R.id.txtTitulo);
+        txtEnunciado = (TextView) findViewById(R.id.txtEnunciado);
+        txtCorreto = (TextView) findViewById(R.id.txtCorreto);
+        txtResolucao = (TextView) findViewById(R.id.txtResolucao);
+
+        findViewById(R.id.btnQ1).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[0]));
+        findViewById(R.id.btnQ2).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[1]));
+        findViewById(R.id.btnQ3).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[2]));
+        findViewById(R.id.btnQ4).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[3]));
+        findViewById(R.id.btnQ5).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[4]));
+        findViewById(R.id.btnQ6).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[5]));
+        findViewById(R.id.btnQ7).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[6]));
+        findViewById(R.id.btnQ8).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[7]));
+        findViewById(R.id.btnQ9).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[8]));
+        findViewById(R.id.btnQ10).setBackgroundTintList(ContextCompat.getColorStateList(this, sel[9]));
+
+        txtTitulo.setText("Resolução - 1ª Questão");
+        txtTitulo.setTextColor(ContextCompat.getColorStateList(this, sel[0]));
+        txtEnunciado.setText("Enunciado: '"+perguntas.get(0).getEnunciado()+"'");
+        txtResolucao.setText(perguntas.get(0).getResolucao());
+        switch (perguntas.get(0).getCerto()){
+            case 1:
+                txtCorreto.setText(perguntas.get(0).getLA());
+                break;
+            case 2:
+                txtCorreto.setText(perguntas.get(0).getLB());
+                break;
+            case 3:
+                txtCorreto.setText(perguntas.get(0).getLC());
+                break;
+            case 4:
+                txtCorreto.setText(perguntas.get(0).getLD());
+                break;
+        }
     }
+
 }
 
