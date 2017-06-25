@@ -261,7 +261,7 @@ public class HomeActivity extends AppCompatActivity
             findViewById(R.id.nsvApli).setVisibility(View.VISIBLE);
             findViewById(R.id.nsvUsu).setVisibility(View.GONE);
         } else if (id == R.id.nav_turma) {
-            startActivity(new Intent(this, BuscaActivity.class));
+            startActivity(new Intent(this, BuscaActivity.class).putExtra("id_es",uid));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

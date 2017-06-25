@@ -52,6 +52,7 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
     String[] disc;
     String[] nome;
     int[] id;
+    int id_es;
 
 
     @Override
@@ -63,6 +64,7 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.setTitle("Pesquisar Turma");
 
+        id_es= getIntent().getExtras().getInt("id_es");
         mProgressView = findViewById(R.id.pesquisa_progress);
         listaP = (ListView) findViewById(R.id.lvListaP);
 
