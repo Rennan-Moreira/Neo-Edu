@@ -11,12 +11,16 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.support.design.internal.NavigationMenuItemView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.ActionMenuView;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -80,14 +84,18 @@ public class HomeActivity extends AppCompatActivity
     int uid;
     int ope =0;
     boolean corr = false;
-
+    String[] nmTurma = new String[10];
+    String[] nmProf = new String[10];
+    String[] dsTurma = new String[10];
+    int[] idTurma =new int[10];
+    int RESULT_I =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        invalidateOptionsMenu();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,9 +104,6 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar3);
-        pb.setProgress(100);
 
         //LinearLayout lil = (LinearLayout) findViewById(R.id.lilAlg);
         mPassAnt = (EditText) findViewById(R.id.edtPasswordAnt);
@@ -123,6 +128,7 @@ public class HomeActivity extends AppCompatActivity
         unome = bun.getString("nome");
         ulogin = bun.getString("login");
         setarVar();
+        Buscar();
     }
 
     public void setarVarM(){
@@ -203,8 +209,6 @@ public class HomeActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.home, menu);
         setarVarM();
         return true;
     }
@@ -214,42 +218,173 @@ public class HomeActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.nav_banco) {
+        //noinspection SimplifiableIfStatemen
+        return super.onOptionsItemSelected(item);
+    }
 
-            startActivity(new Intent(getApplicationContext(), Questionario.class));
-
-            return true;
+    public void novoD(int i){
+        switch (i){
+            case 0:
+                findViewById(R.id.lil1).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt1)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD1)).setText(dsTurma[i]);
+                break;
+            case 1:
+                findViewById(R.id.lil2).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt2)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD2)).setText(dsTurma[i]);
+                break;
+            case 2:
+                findViewById(R.id.lil3).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt3)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD3)).setText(dsTurma[i]);
+                break;
+            case 3:
+                findViewById(R.id.lil4).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt4)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD4)).setText(dsTurma[i]);
+                break;
+            case 4:
+                findViewById(R.id.lil5).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt5)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD5)).setText(dsTurma[i]);
+                break;
+            case 5:
+                findViewById(R.id.lil6).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt6)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD6)).setText(dsTurma[i]);
+                break;
+            case 6:
+                findViewById(R.id.lil7).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt7)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD7)).setText(dsTurma[i]);
+                break;
+            case 7:
+                findViewById(R.id.lil8).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt8)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD8)).setText(dsTurma[i]);
+                break;
+            case 8:
+                findViewById(R.id.lil9).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt9)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD9)).setText(dsTurma[i]);
+                break;
+            case 9:
+                findViewById(R.id.lil10).setVisibility(View.VISIBLE);
+                ((TextView) findViewById(R.id.txt10)).setText(nmTurma[i]);
+                ((TextView) findViewById(R.id.txtD10)).setText(dsTurma[i]);
+                break;
         }
 
-        return super.onOptionsItemSelected(item);
+    }
+
+    public void Buscar(){
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/turmaestudante/"+uid;
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+        StringRequest request = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){ //Quando esta OK
+                        try {
+                            JSONArray js = new JSONArray(response);
+                            for(int i= 0;i<js.length();i++){
+                                nmTurma[i]= js.getJSONObject(i).getString("nm_disciplina");
+                                nmProf[i]= js.getJSONObject(i).getString("nm_professor");
+                                idTurma[i]= js.getJSONObject(i).getInt("turma_id");
+                                dsTurma[i]= js.getJSONObject(i).getString("ds_disciplina");
+                                novoD(i);
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){ // Deu Merda
+
+                        //Toast.makeText(HomeActivity.this, "ERR", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // map = Chave valor
+                Map<String, String> parametros = new HashMap<>();
+
+                return parametros;
+
+            }
+        };
+        queue.add(request);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Buscar();
+    }
+    @Override
+    protected void onResume()
+    {
+        // TODO Auto-generated method stub
+        Buscar();
+        super.onResume();
+    }
+
+    public void Acessar(final int i){
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/turmaestudante/turma/"+idTurma[i]+"/estudante/"+uid;
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+        StringRequest request = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){ //Quando esta OK
+                        //Toast.makeText(BuscaActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                        try {
+                            JSONArray js = new JSONArray(response);
+                            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("prof",nmProf[i]).putExtra("ds",dsTurma[i]).putExtra("tid",idTurma[i]).putExtra("uid",uid).putExtra("name",nmTurma[i]).putExtra("did",js.getJSONObject(0).getInt("disciplinaId")));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){ // Deu Merda
+                        startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("prof",nmProf[i]).putExtra("ds",dsTurma[i]).putExtra("tid",idTurma[i]).putExtra("uid",uid).putExtra("name",nmTurma[i]).putExtra("did",0));
+
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // map = Chave valor
+                Map<String, String> parametros = new HashMap<>();
+
+                return parametros;
+
+            }
+        };
+        queue.add(request);
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
         int id = item.getItemId();
         if (id == R.id.nav_ini) {
             this.setTitle("Início");
             findViewById(R.id.nsvIni).setVisibility(View.VISIBLE);
             findViewById(R.id.nsvApli).setVisibility(View.GONE);
             findViewById(R.id.nsvUsu).setVisibility(View.GONE);
-        } else if (id == R.id.nav_MedAce){
-            return false;
-        } else if (id == R.id.nav_algo){
-            Toast.makeText(getApplicationContext(), "Não disponível", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (id == R.id.nav_banco){
-                startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name", "Banco de Dados"));
-            return false;
-        } else if (id == R.id.nav_prog){
-            Toast.makeText(getApplicationContext(), "Não disponível", Toast.LENGTH_SHORT).show();
-            return false;
-        } else if (id == R.id.nav_rede){
-            Toast.makeText(getApplicationContext(), "Não disponível", Toast.LENGTH_SHORT).show();
-            return false;
+
         } else if (id == R.id.nav_usua) {
             this.setTitle("Configurações do Usuário");
             findViewById(R.id.nsvIni).setVisibility(View.GONE);
@@ -275,8 +410,26 @@ public class HomeActivity extends AppCompatActivity
         hideKeyboard(getApplicationContext(), mNome);
         int id = view.getId();
 
-        if (id == R.id.btnBanco) {
-            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("name", "Banco de Dados"));
+        if (id == R.id.btn1) {
+            Acessar(0);
+        } else if (id ==R.id.btn2){
+            Acessar(1);
+        } else if (id ==R.id.btn3){
+            Acessar(2);
+        } else if (id ==R.id.btn4){
+            Acessar(3);
+        } else if (id ==R.id.btn5){
+            Acessar(4);
+        } else if (id ==R.id.btn6){
+            Acessar(5);
+        } else if (id ==R.id.btn7){
+            Acessar(6);
+        } else if (id ==R.id.btn8){
+            Acessar(7);
+        } else if (id ==R.id.btn9){
+            Acessar(8);
+        } else if (id ==R.id.btn10){
+            Acessar(9);
         } else if (id == R.id.btnEditarPerfil){
             findViewById(R.id.nsvUsuAlt).setVisibility(View.VISIBLE);
             setTitle("Alterar Dados do Usuário");
@@ -296,11 +449,13 @@ public class HomeActivity extends AppCompatActivity
             findViewById(R.id.nsvIni).setVisibility(View.VISIBLE);
             findViewById(R.id.nsvApli).setVisibility(View.GONE);
             findViewById(R.id.nsvUsu).setVisibility(View.GONE);
-        } else if (id == R.id.btnVoltarAlt || id == R.id.btnVoltarSen){
+        } else if (id == R.id.btnVoltarAlt || id == R.id.btnVoltarSen) {
             this.setTitle("Configurações do Usuário");
             findViewById(R.id.nsvUsu).setVisibility(View.VISIBLE);
             findViewById(R.id.nsvUsuAlt).setVisibility(View.GONE);
             findViewById(R.id.nsvUsuSen).setVisibility(View.GONE);
+        } else if (id == R.id.pic){
+                Buscar();
         } else {
             Toast.makeText(getApplicationContext(), "Não disponível", Toast.LENGTH_SHORT).show();
 

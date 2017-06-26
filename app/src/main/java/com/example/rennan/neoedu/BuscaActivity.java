@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ import java.util.Map;
 
 public class BuscaActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private PegarTudo pt = null;
+    //private PegarTudo pt = null;
     private ListView listaP;
     private View mProgressView;
 //
@@ -51,6 +52,8 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
 
     String[] disc;
     String[] nome;
+    String[] ds;
+    int[] did;
     int[] id;
     int id_es;
 
@@ -88,11 +91,8 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
         hideKeyboard(getApplicationContext(),findViewById(R.id.edtBuscaP));
         showProgress(true);
         Listar();
-        pt = new PegarTudo();
-        pt.execute((Void) null);
-    }
-    public void onBackPressed(){
-        finish();
+        //pt = new PegarTudo();
+        //pt.execute((Void) null);
     }
 
     @Override
@@ -108,31 +108,6 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    public class PegarTudo extends AsyncTask<Void, Void, Boolean> {
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-
-            try {
-                Thread.sleep(100);
-                return true;
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            pt = null;
-        }
-
-        @Override
-        protected void onCancelled() {
-            pt = null;
-        }
-    }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
@@ -179,12 +154,16 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
                         try {
                             JSONArray jsonArray = new JSONArray(response);
                             disc = new String[jsonArray.length()];
+                            ds = new String[jsonArray.length()];
                             nome = new String[jsonArray.length()];
                             id = new int[jsonArray.length()];
+                            did = new int[jsonArray.length()];
 
                             for(int i = 0; i<jsonArray.length();i++){
                                 id[i] = jsonArray.getJSONObject(i).getInt("id");
+                                did[i] = jsonArray.getJSONObject(i).getInt("disciplinaId");
                                 disc[i] = jsonArray.getJSONObject(i).getString("nm_disciplina");
+                                ds[i] = jsonArray.getJSONObject(i).getString("ds_disciplina");
                                 nome[i] = jsonArray.getJSONObject(i).getString("nm_professor");
                             }
 
@@ -196,11 +175,13 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
 
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view,
-                                                        int position, long id) {
-                                    Toast.makeText(BuscaActivity.this, "Voce Clicou em " +disc[+ position], Toast.LENGTH_SHORT).show();
+                                                        int position, long ids) {
+                                    Acessar(+ position);
+                                    //Toast.makeText(BuscaActivity.this, "Voce Clicou em " +id[+ position], Toast.LENGTH_SHORT).show();
 
                                 }
                             });
+                            showProgress(false);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -225,8 +206,53 @@ public class BuscaActivity extends AppCompatActivity implements View.OnClickList
         };
         queue.add(request);
 
+    }
+    public void onBackPressed() {
+        if (getParent() == null) {
+            setResult(HomeActivity.RESULT_OK);
+        } else {
+            getParent().setResult(HomeActivity.RESULT_OK);
+        }
+        finish();
+    }
 
-        showProgress(false);
+    public void Acessar(final int pos){
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/turmaestudante/turma/"+id[pos]+"/estudante/"+id_es;
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+        StringRequest request = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){ //Quando esta OK
+                        //Toast.makeText(BuscaActivity.this, "OK", Toast.LENGTH_SHORT).show();
+
+                        JSONArray js = null;
+                        try {
+                            js = new JSONArray(response);
+                            startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("ic",1).putExtra("prof",nome[pos]).putExtra("ds",ds[pos]).putExtra("did",did[pos]).putExtra("tid",id[pos]).putExtra("uid",id_es).putExtra("name",disc[pos]));
+                            //Toast.makeText(BuscaActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){ // Deu Merda
+                        startActivity(new Intent(getApplicationContext(), InterActivity.class).putExtra("ic",0).putExtra("prof",nome[pos]).putExtra("ds",ds[pos]).putExtra("did",did[pos]).putExtra("tid",id[pos]).putExtra("uid",id_es).putExtra("name",disc[pos]));
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // map = Chave valor
+                Map<String, String> parametros = new HashMap<>();
+
+                return parametros;
+
+            }
+        };
+        queue.add(request);
+
     }
 
     public static void hideKeyboard(Context context, View editText) {

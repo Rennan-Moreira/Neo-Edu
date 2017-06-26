@@ -22,303 +22,409 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <LinearLayout
-        android:id="@+id/lilPrin"
+    <ScrollView
+        android:layout_marginTop="55dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="30dp">
-
-        <TextView
-            android:id="@+id/txtNmDisc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Banco de dados"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/txtNmProf"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jorge Luiz Chiara"
-            android:textAlignment="center"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtDsDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Bancos de dados são um conjunto de dados relacionados entre si com registros sobre pessoas, lugares ou coisas. Os dados se relacionam de forma a gerar uma informação"
-            android:textAlignment="center"
-            android:textSize="18sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="30dp"
-            android:background="@android:color/darker_gray" />
+        android:layout_height="match_parent"
+        android:layout_weight="0.5"
+        android:backgroundTint="@color/colorPrimary"
+        android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/lilQuestao"
+            android:id="@+id/lilPrin"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:paddingBottom="40dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp">
 
             <LinearLayout
+                android:id="@+id/lilTop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/txtB"
+                    android:id="@+id/txtNmDisc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:text="Básico"
                     android:textAlignment="center"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="22sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtBasico"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Conceitos básicos para estudantes de "
-                            android:textAlignment="textStart"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btnBasico"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="2.5"
-                        android:backgroundTint="@color/VerdeEdu"
-                        android:onClick="onClick"
-                        android:text="Fazer"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/pbBasico"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progress="0"
-                    android:progressTint="@color/VerdeEdu" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                    android:textSize="24sp" />
 
                 <TextView
+                    android:id="@+id/txtNmProf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:text="Intermediário"
                     android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="22sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtInter"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Conceitos intermediários para estudantes de "
-                            android:textAlignment="textStart"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btnInter"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="2.5"
-                        android:backgroundTint="@color/VerdeEdu"
-                        android:onClick="onClick"
-                        android:text="Fazer"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/pbInter"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progress="0"
-                    android:progressTint="@color/VerdeEdu" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                    android:textSize="18sp" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:enabled="false"
-                    android:text="Avançado"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="22sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/txtAvancado"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Conceitos avançados para estudantes de "
-                            android:textAlignment="textStart"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btnAvancado"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="2.5"
-                        android:backgroundTint="@color/VerdeEdu"
-                        android:onClick="onClick"
-                        android:text="Fazer"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/pbAvancado"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progress="0"
-                    android:progressTint="@color/VerdeEdu" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lilInscreve"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txtB"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false"
-                android:text="Inscrever-se"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="22sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
+                    android:id="@+id/txtDsDesc"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:textAlignment="center"
+                    android:textSize="17sp" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/darker_gray" />
+
+                <LinearLayout
+                    android:id="@+id/lilR"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:text="Entre com o código de acesso para entrar na turma"
-                        android:textAlignment="textStart"
-                        android:textSize="15sp" />
+                        android:enabled="false"
+                        android:text="Ranking"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="22sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:foregroundGravity="center"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="Vizualizar o ranqueamento geral da turma e dos módulos"
+                                android:textAlignment="textStart"
+                                android:textSize="15sp" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/btnR"
+                            style="@style/Widget.AppCompat.Button.Colored"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="5dp"
+                            android:layout_weight="2.4"
+                            android:backgroundTint="@color/VerdeEdu"
+                            android:onClick="onClick"
+                            android:text="Visualizar"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/darker_gray" />
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/btnInscreve"
-                    style="@style/Widget.AppCompat.Button.Colored"
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/scrQuestao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:backgroundTint="@color/colorPrimary"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/lilQuestao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="2.5"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtB"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="Básico"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="22sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txtBasico"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:foregroundGravity="center"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:text="Conceitos básicos para estudantes de "
+                                    android:textAlignment="textStart"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btnBasico"
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="2.4"
+                                android:backgroundTint="@color/VerdeEdu"
+                                android:onClick="onClick"
+                                android:text="Iniciar"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="Intermediário"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="22sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txtInter"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:foregroundGravity="center"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:text="Conceitos intermediários para estudantes de "
+                                    android:textAlignment="textStart"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btnInter"
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="2.4"
+                                android:backgroundTint="@color/VerdeEdu"
+                                android:onClick="onClick"
+                                android:text="Iniciar"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:text="Avançado"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorPrimaryDark"
+                            android:textSize="22sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/txtAvancado"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:foregroundGravity="center"
+                                    android:gravity="center"
+                                    android:padding="10dp"
+                                    android:text="Conceitos avançados para estudantes de "
+                                    android:textAlignment="textStart"
+                                    android:textSize="15sp" />
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btnAvancado"
+                                style="@style/Widget.AppCompat.Button.Colored"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:layout_weight="2.4"
+                                android:backgroundTint="@color/VerdeEdu"
+                                android:onClick="onClick"
+                                android:text="Iniciar"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/lilInscreve"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="Inscrever-se"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Entre com o código de acesso para entrar na turma"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnInscreve"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.4"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Inscrever"
+                        android:textSize="14sp"
+                        android:visibility="visible" />
+
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.5"
+                    android:textColorHint="@color/colorAccent"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/edtCodAc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Código de acesso da turma"
+                        android:maxLines="1"
+                        android:textColor="@color/confirm2" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/btnInsc"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:backgroundTint="@color/VerdeEdu"
                     android:onClick="onClick"
-                    android:text="Entrar"
-                    android:textSize="14sp" />
+                    android:text="Inscrever"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

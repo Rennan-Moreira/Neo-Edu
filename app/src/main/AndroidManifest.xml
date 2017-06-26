@@ -50,6 +50,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="Buscar Turmas"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+        android:name=".RanqActivity"
+        android:windowSoftInputMode="stateHidden"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:label="Ranking"
+        android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

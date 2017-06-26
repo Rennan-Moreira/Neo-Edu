@@ -18,6 +18,8 @@
     <string name="error_field_required">Este campo é obrigatório!</string>
     <string name="permission_rationale">"Essas informações são necessárias!"</string>
     <string name="estudante">Estudante</string>
+    <string name="bd">Banco de dados</string>
+
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>

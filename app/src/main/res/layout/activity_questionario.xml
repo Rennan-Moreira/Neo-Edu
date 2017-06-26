@@ -50,7 +50,7 @@
         android:padding="10dp"
         android:text="Pergunta"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="21sp"
         android:visibility="visible" />
 
     <LinearLayout
@@ -68,10 +68,12 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:onClick="onClick"
-            android:text="Button"
             android:textAlignment="center"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/btnLetraB"
@@ -79,10 +81,13 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/btnLetraC"
@@ -90,10 +95,13 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:textSize="13sp" />
 
         <Button
             android:id="@+id/btnLetraD"
@@ -101,10 +109,13 @@
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:backgroundTint="@color/confirm"
+            android:foregroundGravity="center"
+            android:gravity="center"
             android:onClick="onClick"
             android:text="Button"
             android:textAlignment="center"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/background_light"
+            android:textSize="13sp" />
 
     </LinearLayout>
 

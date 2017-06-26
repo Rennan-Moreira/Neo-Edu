@@ -199,8 +199,9 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
             flat.setPadding(100,0,100,100);
 
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password, nome, user);
-            mAuthTask.execute((Void) null);
+            cad(email, password, nome, user);
+            //mAuthTask = new UserLoginTask(email, password, nome, user);
+            //mAuthTask.execute((Void) null);
 
             //Intent next = new Intent(this, HomeActivity.class);
             //startActivity(next);
@@ -268,6 +269,72 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
         Intent next = new Intent(this, EntrarActivity.class);
         startActivity(next);
     }
+    public void cad(final String ec,final  String pc,final  String nc,final  String uc){
+        hideKeyboard(getApplicationContext(),mEmailView);
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/estudante";
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
+
+        StringRequest request = new StringRequest(Request.Method.POST,url,
+                new Response.Listener<String>(){
+                    @Override
+                    public void onResponse(String response){ //Quando esta OK
+                        if(response.equals("0")) {
+                            Toast.makeText(CadastrarActivity.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
+                        } else {
+                            try {
+                                JSONArray jsonArray = new JSONArray(response);
+                                // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
+
+                                uemail =jsonArray.getJSONObject(0).getString("nm_email");
+                                unome = jsonArray.getJSONObject(0).getString("nm_estudante");
+                                uimg = jsonArray.getJSONObject(0).getString("ds_img");
+                                ulogin = jsonArray.getJSONObject(0).getString("nm_login_estudante");
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            showProgress(false);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Usuário cadastrado com sucesso!",
+                                    Toast.LENGTH_SHORT);
+
+                            toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
+                            toast.show();
+                            finish();
+                        }
+                    }
+                },
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error){ // Deu Merda
+                        Toast toast = Toast.makeText(getApplicationContext(), "Usuário ou email ja cadastrado",
+                                Toast.LENGTH_SHORT);
+
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
+                        toast.show();
+                        showProgress(false);
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // map = Chave valor
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("nm_login_estudante", uc);
+                parametros.put("nm_estudante", nc);
+                parametros.put("nm_email", ec);
+                parametros.put("nm_senha", pc);
+                parametros.put("ds_img", "nada");
+                return parametros;
+            }
+        };
+        queue.add(request);
+
+        try {
+            Thread.sleep(1000);
+
+        } catch (InterruptedException e) {
+            return;
+        }
+    }
 
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -282,6 +349,7 @@ public class CadastrarActivity extends AppCompatActivity implements OnClickListe
             mNome = nome;
             mUsuario = usuario;
         }
+
 
         @Override
         protected Boolean doInBackground(Void... params) {

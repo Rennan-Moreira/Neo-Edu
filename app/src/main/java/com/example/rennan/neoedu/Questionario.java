@@ -33,6 +33,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,6 +55,11 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
     private View mProgressView;
     private View lilT;
     private View lilB;
+
+    int uid;
+    int did;
+    int mol;
+    int tid;
 
     private PegarPergunta2 pp = null;
     private PegarAlternativa2 pa = null;
@@ -147,6 +153,12 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
 
         //showProgress(true);
 
+        Bundle bun = getIntent().getExtras();
+        uid = bun.getInt("uid");
+        did = bun.getInt("did");
+        mol = bun.getInt("mol");
+        tid = bun.getInt("tid");
+
         LA = (Button) findViewById(R.id.btnLetraA);
         LB = (Button) findViewById(R.id.btnLetraB);
         LC = (Button) findViewById(R.id.btnLetraC);
@@ -162,7 +174,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         txtQuestao = (TextView) findViewById(R.id.txtQuestao);
         btnEnabled();
         this.setTitle(getIntent().getStringExtra("name"));
-        pp = new PegarPergunta2();
+        //pp = new PegarPergunta2();
         //pp.execute((Void) null);
         PegarPergunta();
 
@@ -422,9 +434,8 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         return false;
     }
 
-
     public void PegarPergunta(){
-        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/25/modulo/1";
+        String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/"+did+"/modulo/"+mol;
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
 
         StringRequest request = new StringRequest(Request.Method.GET,url,
@@ -432,24 +443,23 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onResponse(String response){ //Quando esta OK
                         if(response.equals("0")) {
-                            Toast.makeText(Questionario.this, "Esses dados já existem", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Questionario.this, "Esses dados já existem - "+did+" - "+mol, Toast.LENGTH_SHORT).show();
                         } else {
-//                                Toast toast = Toast.makeText(getApplicationContext(), "Teste"+i,
-//                                        Toast.LENGTH_SHORT);
-//
-//                                toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
-//                                toast.show();
+                            //Toast.makeText(Questionario.this, "Esses dados já existem - "+did+" - "+mol, Toast.LENGTH_SHORT).show();
                             try {
+                                //JSONArray jsonArray = new JSONArray(response);
 
                                 JSONArray jsonArray = new JSONArray(response);
+
                                 // OBTENEMOS LOS DATOS QUE DEVUELVE EL SERVIDOR
-                                for (int i=0;i< jsonArray.length();i++) {
+                                for (int i=0;i< 10;i++) {
                                     perguntas.add(new Pergunta(jsonArray.getJSONObject(i).getInt("id"),jsonArray.getJSONObject(i).getString("ds_questao"),jsonArray.getJSONObject(i).getString("ds_resolucao")));
                                     PegarAlternativa(jsonArray.getJSONObject(i).getInt("id"),i);
                                     pa = new PegarAlternativa2(jsonArray.getJSONObject(i).getInt("id"),i);
                                     //pa.execute((Void) null);
                                 }
 
+                                //Toast.makeText(Questionario.this, "OK3", Toast.LENGTH_SHORT).show();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -459,11 +469,14 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){ // Deu Merda
+                        Toast.makeText(Questionario.this, "Esses dados já existem - "+did+" - "+mol, Toast.LENGTH_SHORT).show();
+
                         Toast toast = Toast.makeText(getApplicationContext(), "Erro na conexão!",
                                 Toast.LENGTH_SHORT);
 
                         toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,420);
                         toast.show();
+
                         //showProgress(false);
                     }
                 }) {
@@ -483,7 +496,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/25/modulo/1";
+            String url = "https://neoedu-laravel-api-mateusvilione.c9users.io/questionario/disciplina/"+did+"/modulo/"+mol;
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext()); // this = context
 
             StringRequest request = new StringRequest(Request.Method.GET,url,
@@ -584,7 +597,8 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                                         perguntas.get(Con).setCerto(i+1);
                                     }
                                 }
-                                if (contOk == 3){
+
+                                if (contOk == 10){
                                     TrocaPergunta();
                                     showProgress(false);
                                 }
@@ -679,7 +693,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
                         public void onResponse(String response){ //Quando esta OK
                             if(response.equals("0")) {
                                 Toast toast = Toast.makeText(getApplicationContext(), "Usuário e/ou senha inválidos",
-                                        Toast.LENGTH_LONG);
+                                        Toast.LENGTH_SHORT);
 
                                 toast.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.TOP,0,1290);
                                 toast.show();
@@ -788,7 +802,7 @@ public class Questionario extends AppCompatActivity implements View.OnClickListe
     public void resolucao(){
 
         for(int i =0;i<10;i++) {
-            er = new EnviarResposta(6, 58, perguntas.get(i).getId(), resp(i));
+            er = new EnviarResposta(tid, uid, perguntas.get(i).getId(), resp(i));
             er.execute((Void) null);
         }
 

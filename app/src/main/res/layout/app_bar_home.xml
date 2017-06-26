@@ -95,90 +95,31 @@
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
                         android:layout_gravity="center_vertical"
+                        android:clickable="true"
+                        android:onClick="onClick"
                         android:src="@drawable/ic_user3" />
 
 
                 </FrameLayout>
 
             </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
-                android:id="@+id/lilAlg"
+                android:id="@+id/lil1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Algoritmo"
-                    android:textAlignment="center"
-                    android:textColor="@color/confirm"
-                    android:textSize="22sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
-                            android:textAlignment="textStart"
-                            android:textSize="15sp" />
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/btnAlgoritmo"
-                        style="@style/Widget.AppCompat.Button.Colored"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="2.5"
-                        android:backgroundTint="@color/confirm"
-                        android:onClick="onClick"
-                        android:text="Treinar"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <ProgressBar
-                    android:id="@+id/progressBar2"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progressTint="@color/VerdeEdu" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lilBan"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
-
-                <TextView
+                    android:id="@+id/txt1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -194,61 +135,62 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtD1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="Conjunto de dados relacionados entre si para gerar informações"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
                             android:textAlignment="textStart"
                             android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/btnBanco"
+                        android:id="@+id/btn1"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
                         android:layout_marginRight="5dp"
                         android:layout_weight="2.5"
                         android:backgroundTint="@color/VerdeEdu"
                         android:onClick="onClick"
-                        android:text="Treinar"
+                        android:text="Entrar"
                         android:textSize="14sp" />
 
                 </LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/progressBar3"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <View
+                    android:id="@+id/view6"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progress="0"
-                    android:progressTint="@color/VerdeEdu" />
-
+                    android:background="@android:color/darker_gray" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lilPro"
+                android:id="@+id/lil2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/txt2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Programação"
+                    android:text="Banco de Dados"
                     android:textAlignment="center"
-                    android:textColor="@color/confirm"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="22sp" />
 
                 <LinearLayout
@@ -258,60 +200,62 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtD2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="Técnica para desenvolver programas utilizando linguagens específicas"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
                             android:textAlignment="textStart"
                             android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/btnProg"
+                        android:id="@+id/btn2"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
                         android:layout_marginRight="5dp"
                         android:layout_weight="2.5"
-                        android:backgroundTint="@color/confirm"
+                        android:backgroundTint="@color/VerdeEdu"
                         android:onClick="onClick"
-                        android:text="Treinar"
+                        android:text="Entrar"
                         android:textSize="14sp" />
 
                 </LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/progressBar4"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <View
+                    android:id="@+id/view6"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progressTint="@color/VerdeEdu" />
-
+                    android:background="@android:color/darker_gray" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lilRed"
+                android:id="@+id/lil3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/txt3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Redes"
+                    android:text="Banco de Dados"
                     android:textAlignment="center"
-                    android:textColor="@color/confirm"
+                    android:textColor="@color/colorPrimaryDark"
                     android:textSize="22sp" />
 
                 <LinearLayout
@@ -321,52 +265,500 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/txtD3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:padding="10dp"
-                            android:text="Conjunto de regras e procedimentos lógicos para solução de um problema"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
                             android:textAlignment="textStart"
                             android:textSize="15sp" />
 
                     </LinearLayout>
 
                     <Button
-                        android:id="@+id/btnRede"
+                        android:id="@+id/btn3"
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
                         android:layout_marginRight="5dp"
                         android:layout_weight="2.5"
-                        android:backgroundTint="@color/confirm"
+                        android:backgroundTint="@color/VerdeEdu"
                         android:onClick="onClick"
-                        android:text="Treinar"
+                        android:text="Entrar"
                         android:textSize="14sp" />
 
                 </LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/progressBar5"
-                    style="?android:attr/progressBarStyleHorizontal"
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lil4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:progressTint="@color/VerdeEdu" />
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn4"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
             </LinearLayout>
 
-            <View
+            <LinearLayout
+                android:id="@+id/lil5"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginBottom="5dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/darker_gray" />
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn5"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lil6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn6"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lil7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn7"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lil8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn8"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lil9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn9"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lil10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/txt10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Banco de Dados"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="22sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtD10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="Conjunto de dados relacionasdfsdfsdfsdos entre si para gerar informações"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btn10"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="2.5"
+                        android:backgroundTint="@color/VerdeEdu"
+                        android:onClick="onClick"
+                        android:text="Entrar"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -380,7 +772,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginTop="15dp"
-                    android:text="Neo Edu entrará em fase de testes no inicio de 2017"
+                    android:text="Neo Edu entrará em fase de testes em julho de 2017"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="23.5sp" />
 
@@ -391,7 +783,7 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:text="Desenvolvedores estão planejando entregar um beta do aplicativo agora no começo de 2017 para que alguns alunos consigam testar durante o próximo semestre ... para avaliar o desempenho do aplicativo" />
+                    android:text="Desenvolvedores estão planejando entregar um beta do aplicativo em julho de 2017 para que alguns alunos consigam testar durante o próximo semestre para ... avaliar o desempenho do aplicativo" />
 
             </LinearLayout>
 
@@ -419,7 +811,7 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
-                    android:text="Em setembro de 2016, os alunos da FATEC Rubens Lara iniciaram o projeto Neo Edu. Neo Edu é um aplicativo que visa auxiliar os professores e alunos na relação com o ... aprendizado" />
+                    android:text="Em setembro de 2016, os alunos da FATEC Rubens Lara iniciaram o projeto Neo Edu. Neo Edu é um aplicativo que visa auxiliar os professores e alunos na relação ... aprendizado" />
 
             </LinearLayout>
 
